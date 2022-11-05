@@ -35,20 +35,20 @@ To find the shortest path between nodes, we will implement our code using Dijkst
 #### Week 1 (11.05 ~11.11)
 1. Accessing dataset (which we have already done)
 2. Data parsing
-3. Construct DFS traversal
+3. Construct DFS traversal (by 11.10)
 4. Write our own test cases for DFS traversal
 5. Complete development log 2
 #### Week 2 (11.12~11.18)
 1. Write our own test cases for Dijkstra’s algorithm
-2. Construct Dijkstra’s algorithm
+2. Construct Dijkstra’s algorithm (prefer by 11.17)
 3. Expect to have DFS works and test cases for Dijkstra’s algorithm before meeting
 4. Complete development log 3
 #### Week 3 (11.28~12.02)
 1. Write our own test cases for PageRank algorithm
-2. Construct PageRank algorithm
+2. Construct PageRank algorithm (by 12.01)
 3. Complete development log 4
 ##### Week 4 (12.03~12.08)
 1. Finalize project details
 2. Finalize github repository with README.md
-3. Make presentation video
-4. Write final report
+3. Make presentation video (by 12.05)
+4. Write final report (by 12.07)
