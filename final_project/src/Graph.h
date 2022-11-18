@@ -8,20 +8,12 @@
 #include <map>
 
 #include "edge.h"
+#include "GraphNode.h"
 
 /**
  * Represents a graph; used by the GraphTools class.
  */
 class Graph{
-    class GraphNode{
-        public:
-            int getNodeId() {return node_id;}
-            std::unordered_map<GraphNode, Edge> getAdjacentList() {return node_adjacency_list;}
-
-        private:
-            int node_id;
-            std::unordered_map<GraphNode, Edge> node_adjacency_list;
-    };
 
     public:
         Graph();
@@ -32,13 +24,13 @@ class Graph{
          * @return a vertex from the graph
          * Adapted from Lab Machine Learning
          */
-        GraphNode getStartingVertex() const;
+        GraphNode getStartingNode() const;
         
         /**
          * Gets all vertices in the graph.
          * @return a vector of all vertices in the graph
          */
-        std::vector<GraphNode> getVertices() const;
+        std::vector<GraphNode> getNodes() const;
 
         /**
         * Gets an edge between two vertices.

@@ -10,6 +10,7 @@
 #include <limits.h>
 
 #include <Graph.h>
+#include <GraphNode.h>
 
 using std::string;
 
