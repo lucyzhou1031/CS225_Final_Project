@@ -1,7 +1,6 @@
 ## Leading Question 
 
-In this project, we are trying to find which website is the most visited or most important according to data collected from a specific web searching engine. From the dataset, we can learn about the shortest path between two websites, and which website in the dataset is the most important and which one is the least. We will be using Google web data collection to test our program. It is expected that this program is a general tool for any valid data collections from other search engines. We are expected to find the shortest path from one website to another, and also traverse through all websites (nodes) as well.
-
+In this project, we will be finding which website has greater importance than others based on data collected from a specific web searching engine using various data structures and algorithms. To solve this goal, we will break the problem down to a few smaller ones and will implement algorithms using various data structures to solve each. From the dataset, we will process the data into matrices and use PageRank algorithm to rank websites by how important they’re. We will construct a weighted graph based on the matrix that comes from the data and use Dijkstra’s algorithm to find the shortest path between two websites. We will be using the DFS algorithm to traverse through the graph. We will then decide with websites are considered more important based on all analysis we made. We will be using Google web data collection to test our program, and we expect this program to be generalized for any valid data collections from other search engines.
 ## Dataset Acquisition
 
 ### Data Format
@@ -23,7 +22,7 @@ We will be using three algorithms in this project. We will first use DFS to trav
 
 The expected inputs for our PageRank algorithm will be a transit matrix, which will be converted by each line’s data pair, and a vector of initial guesses of probability or importance for each node. The transit matrix will represent our directed graph for our algorithm with each entry representing the weight of the edge from one node to another. The expected output for our PageRank algorithm will be a vector of probability which shows how often people go to a specific web page, representing the importance of each web page. We will be using this vector to determine which one is the most visited or the most important and which one is the least visited or the least important. The time complexity for the PageRank algorithm is O(E*k) where E is the number of edges and k is the number of iterations.
 
-To find the shortest path between nodes, we will implement our code using Dijkstra’s algorithm. The expected input for this algorithm is a source node, and a directed source graph object. The expected output is a collection of integer values representing the shortest path from the source node to every other node in the source graph. The time complexity is approximately O((V+E)logV) where E is the number of edges and V is the number of vertices. The space complexity is O(V).
+To find the shortest path between nodes, we will implement our code using Dijkstra’s algorithm. The expected input for this algorithm is a source node, and a weighted directed source graph object. The expected output is a collection of integer values representing the shortest path from the source node to every other node in the source graph. The time complexity is approximately O((V+E)logV) where E is the number of edges and V is the number of vertices. The space complexity is O(V).
 
 
 ## Timeline
