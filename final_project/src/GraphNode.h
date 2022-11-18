@@ -17,6 +17,7 @@ class GraphNode{
         bool operator!=(GraphNode& other) const{
             return !(this->node_id == other.node_id);
         }
+        GraphNode(int id);
 
     private:
         int node_id;
