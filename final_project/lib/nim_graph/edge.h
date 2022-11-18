@@ -1,6 +1,7 @@
 /**
  * @file edge.h
  * Definition and (minimal) implementation of an edge class.
+ * Adapted from Lab Machine Learning
  */
 
 #pragma once
@@ -8,9 +9,11 @@
 #include <string>
 #include <limits.h>
 
+#include <Graph.h>
+
 using std::string;
 
-typedef string Vertex;
+typedef string GraphNode;
 
 /**
  * Represents an edge in a graph; used by the Graph class.
@@ -21,38 +24,38 @@ typedef string Vertex;
 class Edge
 {
   public:
-    Vertex source; /**< The source of the edge **/
-    Vertex dest; /**< The destination of the edge **/
+    GraphNode source; /**< The source of the edge **/
+    GraphNode dest; /**< The destination of the edge **/
 
     /**
      * Parameter constructor for unweighted graphs.
-     * @param u - one vertex the edge is connected to
-     * @param v - the other vertex it is connected to
+     * @param u - one GraphNode the edge is connected to
+     * @param v - the other GraphNode it is connected to
      */
-    Edge(Vertex u, Vertex v)
+    Edge(GraphNode u, GraphNode v)
         : source(u), dest(v), label(""), weight(-1)
     { /* nothing */
     }
 
     /**
      * Parameter constructor for unweighted graphs.
-     * @param u - one vertex the edge is connected to
-     * @param v - the other vertex it is connected to
+     * @param u - one GraphNode the edge is connected to
+     * @param v - the other GraphNode it is connected to
      * @param lbl - the edge label
      */
-    Edge(Vertex u, Vertex v, string lbl)
+    Edge(GraphNode u, GraphNode v, string lbl)
         : source(u), dest(v), label(lbl), weight(-1)
     { /* nothing */
     }
 
     /**
      * Parameter constructor for weighted graphs.
-     * @param u - one vertex the edge is connected to
-     * @param v - the other vertex it is connected to
+     * @param u - one GraphNode the edge is connected to
+     * @param v - the other GraphNode it is connected to
      * @param w - the weight of the edge
      * @param lbl - the edge label
      */
-    Edge(Vertex u, Vertex v, int w, string lbl)
+    Edge(GraphNode u, GraphNode v, int w, string lbl)
         : source(u), dest(v), label(lbl), weight(w)
     { /* nothing */
     }
