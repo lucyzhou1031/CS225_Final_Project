@@ -6,6 +6,7 @@
 #include <vector>
 #include <unordered_map>
 #include <map>
+#include <set>
 
 #include "edge.h"
 #include "GraphNode.h"
@@ -33,15 +34,6 @@ class Graph{
         std::vector<GraphNode> getNodes() const;
 
         /**
-        * Gets an edge between two vertices.
-         * @param source - one vertex the edge is connected to
-         * @param destination - the other vertex the edge is connected to
-         * @return - if exist, return the corresponding edge
-         *         - if edge doesn't exist, return Edge()
-         */
-        int getEdgeWeight(GraphNode source, GraphNode destination) const;
-
-        /**
          * Gets an edge between two vertices.
         * @param source - one vertex the edge is connected to
         * @param destination - the other vertex the edge is connected to
@@ -49,6 +41,15 @@ class Graph{
         *         - if edge doesn't exist, return Edge()
         */
         Edge getEdge(GraphNode source, GraphNode destination) const;
+        
+        /**
+        * Gets an edge between two vertices.
+         * @param source - one vertex the edge is connected to
+         * @param destination - the other vertex the edge is connected to
+         * @return - if exist, return the corresponding edge
+         *         - if edge doesn't exist, return Edge()
+         */
+        int getEdgeWeight(GraphNode source, GraphNode destination) const;
 
         /**
          * Gets all the edges in the graph.
@@ -65,10 +66,8 @@ class Graph{
         /**
          * Removes a given vertex from the graph.
          * @param v - the vertex to remove
-         * @return - if v exists, return v
-         *         - if not, return InvalidVertex;
          */
-        GraphNode removeGraphNode(GraphNode v);
+        void removeGraphNode(GraphNode v);
 
         void clear();
 
