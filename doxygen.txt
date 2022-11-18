@@ -1,0 +1,11 @@
+Class GraphNode:
+    public:
+
+    private:
+
+
+
+Class Graph:
+    public:
+
+    private:
