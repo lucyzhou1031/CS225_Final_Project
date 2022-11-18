@@ -14,8 +14,6 @@
 
 using std::string;
 
-typedef string GraphNode;
-
 /**
  * Represents an edge in a graph; used by the Graph class.
  *
