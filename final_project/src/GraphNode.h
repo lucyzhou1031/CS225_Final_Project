@@ -13,6 +13,10 @@ class GraphNode{
     public:
         int getNodeId() {return node_id;}
         std::unordered_map<GraphNode, Edge> getAdjacentList() {return node_adjacency_list;}
+        
+        bool operator!=(GraphNode& other) const{
+            return !(this->node_id == other.node_id);
+        }
 
     private:
         int node_id;

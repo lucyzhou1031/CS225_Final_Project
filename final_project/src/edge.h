@@ -62,7 +62,7 @@ class Edge
     /**
      * Default constructor.
      */
-    Edge() : source(""), dest(""), label(""), weight(-1)
+    Edge() : source(), dest(), label(""), weight(-1)
     { /* nothing */
     }
 
@@ -108,5 +108,4 @@ class Edge
 private:
     string label; /**< The edge label **/
     int weight; /**< The edge weight (if in a weighed graph) **/
-
 };
