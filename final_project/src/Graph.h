@@ -49,7 +49,7 @@ class Graph{
          * @return - if exist, return the corresponding edge
          *         - if edge doesn't exist, return Edge()
          */
-        int getEdgeWeight(GraphNode source, GraphNode destination) const;
+        double getEdgeWeight(GraphNode source, GraphNode destination) const;
 
         /**
          * Gets all the edges in the graph.

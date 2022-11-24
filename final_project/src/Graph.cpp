@@ -23,7 +23,7 @@ Edge Graph::getEdge(GraphNode source, GraphNode destination) const{
     return e;
 }
 
-int Graph::getEdgeWeight(GraphNode source, GraphNode destination) const{
+double Graph::getEdgeWeight(GraphNode source, GraphNode destination) const{
     Edge e = graph_adjacency_list.at(source).at(destination);
     return e.getWeight();
 }

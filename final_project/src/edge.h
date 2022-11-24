@@ -59,12 +59,12 @@ class Edge
     { /* nothing */
     }
 
-    /**
-     * Default constructor.
-     */
-    Edge() : source(), dest(), label(""), weight(-1)
-    { /* nothing */
-    }
+    // /**
+    //  * Default constructor.
+    //  */
+    // Edge() : source(), dest(), label(""), weight(-1)
+    // { /* nothing */
+    // }
 
     /**
      * Compares two Edges.
@@ -88,7 +88,7 @@ class Edge
     /**
      * Gets edge weight.
      */
-    int getWeight() const
+    double getWeight() const
     {
         return this->weight;
     }
@@ -107,5 +107,5 @@ class Edge
     }
 private:
     string label; /**< The edge label **/
-    int weight; /**< The edge weight (if in a weighed graph) **/
+    double weight; /**< The edge weight (if in a weighed graph) **/
 };
