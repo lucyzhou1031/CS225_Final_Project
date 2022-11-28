@@ -14,9 +14,6 @@
 #include <set>
 
 using namespace std;
-DataParsing web_google = new DataParsing("final_project\web-Google.txt",5105043);
-DataParsing test_small = new DataParsing("final_project\test.txt",30);
-DataParsing test_extreme = new DataParsing("final_project\extreme.txt",15);
 
 template <typename T>
 string print_matrix(vector<vector<T>> matrix, string file, string type){
