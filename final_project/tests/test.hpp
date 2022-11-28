@@ -19,17 +19,25 @@ DataParsing test_small = new DataParsing("final_project\test.txt",30);
 DataParsing test_extreme = new DataParsing("final_project\extreme.txt",15);
 
 template <typename T>
-string print_matrix(std::vector<std::vector<T>> matrix){
-    if (matrix.length() < 0 || matrix[0].length() < 0) return "invaild demension";
-    string output = "demension: " + matrix.length() + " * " + matrix[0].length();
-    for (int i = 0; i < matrix.length(); i++){
-        for (int j = 0; j < matrix[0].length(); j++){
-            output += matrix[i][j];
-            output += "  ";
-        }
-        output += "/n";
+string print_matrix(vector<vector<T>> matrix, string file, string type){
+    string filename = "test_" + file + "_" + type + "_output.txt";
+    ofstream file;
+    file.open(filename);
+    if(matrix.length() < 0 || matrix[0].length() < 0){
+        file << "invalid demension";
+        return "invalid demension";
     }
-    return output;
+    if(file.is_open()){
+        for (int i = 0; i < matrix.length(); i++){
+            for (int j= 0; j < matrix[0].length(); j++){
+                file << to_string(matrix[i][j]);
+                file << " ";
+            }
+            file << "\n";
+        }
+    }
+    file.close();
+    return filename;
 }
 
 TEST_CASE("test_extreme","[matrix_input, test_extreme_case]"){
