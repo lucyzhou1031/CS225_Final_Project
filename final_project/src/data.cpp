@@ -2,6 +2,9 @@
 #include <utils.h>
 #include <ctype.h>
 
+#include <iomanip>
+#include <sstream>
+
 DataParsing::DataParsing(std::string filename, int height) {
     height_ = height;
     std::string file = file_to_string(filename);
@@ -30,7 +33,13 @@ DataParsing::DataParsing(std::string filename, int height) {
             visited.at(col) = true;
             graph.at(row).at(col) = 1;
         }
-        
+    }
+
+    double toPrecise(double input, int precision){
+        stringstream stream;
+        stream << std::fixed << std::setprecision(precision) << input;
+        string s = stream.str();
+        return s.stod();
     }
 
     adjacency_matrix = graph;
