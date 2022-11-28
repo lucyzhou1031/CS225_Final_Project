@@ -40,7 +40,9 @@ string print_matrix(vector<vector<T>> matrix, string file, string type){
 TEST_CASE("test_extreme","[matrix_input, test_extreme_case]"){
     DataParsing test_extreme = new DataParsing("final_project\extreme.txt",10);
     vector<vector<int>> testAdj = test_extreme.getAdjacencyMatrix();
+    print_matrix(testAdj);
     vector<vector<int>> testTran = test_extreme.getTransitMatrix();
+    print_matrix(testTran);
     REQUIRE(testAdj == {
         {0,1,1,1,0,0,0,0,0,1,0},\
         {1,0,0,0,1,1,1,0,0,0,0},\
@@ -74,7 +76,9 @@ TEST_CASE("test_extreme","[matrix_input, test_extreme_case]"){
 TEST_CASE("test_small","[matrix_input, test_small_case]"){
     DataParsing test_small = new DataParsing("final_project\extreme.txt",10);
     vector<vector<int>> testAdj = test_small.getAdjacencyMatrix();
+    print_matrix(testAdj);
     vector<vector<int>> testTran = test_small.getTransitMatrix();
+    print_matrix(testTran);
     REQUIRE(testAdj == {
         {0,1,0,1,0,0,0,0,0,1},\
         {1,0,1,0,1,1,1,1,1,1},\
