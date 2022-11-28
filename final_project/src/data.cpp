@@ -1,6 +1,9 @@
 #include <data.h>
 #include <utils.h>
 
+#include <iomanip>
+#include <sstream>
+
 DataParsing::DataParsing(std::string filename, int height) {
     // V2D table;
     // std::string file = file_to_string(filename);
@@ -58,6 +61,13 @@ DataParsing::DataParsing(std::string filename, int height) {
     //     }
     //     myfile.close();
 
+    double toPrecise(double input, int precision){
+        stringstream stream;
+        stream << std::fixed << std::setprecision(precision) << input;
+        string s = stream.str();
+        return s.stod();
+    }
+
     adjacency_matrix = graph;
     transit_matrix = adjacency_matrix;
     for (unsigned j = 0; j < graph.at(0).size(); j++) {
@@ -68,9 +78,9 @@ DataParsing::DataParsing(std::string filename, int height) {
         
         for (unsigned i = 0; i < graph.size(); i++) {
             if (sum == 0) {
-                transit_matrix.at(i).at(j) = ((double) 1.0 / (double) height);
+                transit_matrix.at(i).at(j) = toPercise(((double) 1.0 / (double) height), 3); 
             } else {
-                transit_matrix.at(i).at(j) = ((double) graph.at(i).at(j) / (double) height);
+                transit_matrix.at(i).at(j) = toPrecise(((double) graph.at(i).at(j) / (double) height), 3);
             }
         }
     }
