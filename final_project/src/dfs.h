@@ -21,7 +21,7 @@ class DFS
         void add(const GraphNode & node);
         GraphNode pop();
         GraphNode peek() const;
-        // bool empty() const;
+        bool empty() const;
 
     private:
         Graph g_;
