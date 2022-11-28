@@ -36,7 +36,6 @@ DataParsing::DataParsing(std::string filename, int height) {
             col = std::stoi(each_line.at(0));
             graph.at(row).at(col) = 1;
         }
-        
     }
     //     while (getline(myfile, line)) {
     //         if (line.substr(0, 1) != "#") {
