@@ -15,4 +15,5 @@ class DataParsing {
         int height_;
         std::vector<std::vector<int>> adjacency_matrix;
         std::vector<std::vector<double>> transit_matrix;
+        double toPrecise(double input, int precision);
 };

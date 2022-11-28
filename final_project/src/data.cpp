@@ -1,21 +1,8 @@
 #include <data.h>
 #include <utils.h>
+#include <ctype.h>
 
 DataParsing::DataParsing(std::string filename, int height) {
-    // V2D table;
-    // std::string file = file_to_string(filename);
-    // std::vector<std::string> lines;
-    // int size = SplitString(file, '\n', lines);
-    // for (int i = 0; i < size; i++) {
-    //     lines.at(i) = Trim(lines.at(i));
-    //     std::vector<std::string> to_push;
-    //     int j = SplitString(lines.at(i), ',', to_push);
-    //     for (int k = 0; k < j; k++) {
-    //         to_push.at(k) = Trim(to_push.at(k));
-    //     }
-    //     table.push_back(to_push);
-    // }
-    // return table;
     height_ = height;
     std::string file = file_to_string(filename);
     std::string line;
@@ -24,40 +11,27 @@ DataParsing::DataParsing(std::string filename, int height) {
     std::vector<std::string> lines;
     int size = SplitString(file, '\n', lines);
     for (int i = 0; i < size; i++) {
+        if(!isdigit(lines.at(i).at(0))) {
+            continue;
+        }
         lines.at(i) = Trim(lines.at(i));
         std::vector<std::string> each_line;
-        int j = SplitString(lines.at(i), ' ', each_line);
+        int j = SplitString(lines.at(i), '  ', each_line);
+        if (each_line.size() != 2) {
+            continue;
+        }
         for (int k = 0; k < j; k++) {
             each_line.at(k) = Trim(each_line.at(k));
-            
         }
         if (row >= 0 && row <= height_ && col >= 0 && col <= height_) {
             row = std::stoi(each_line.at(1));
             col = std::stoi(each_line.at(0));
+            visited.at(row) = true;
+            visited.at(col) = true;
             graph.at(row).at(col) = 1;
         }
         
     }
-    //     while (getline(myfile, line)) {
-    //         if (line.substr(0, 1) != "#") {
-    //             std::string s = ""
-    //             int row = 0;
-    //             int col = 0;
-    //             for (unsigned i = 0; i < line.length(); i++) {
-    //                 if (s != "" && line.substr(i, 1) == " ") {
-    //                     col = std::stoi(s);
-    //                     s = "";
-    //                 }
-    //                 s += line.substr(i, 1);
-    //                 if (i == line.length() - 1) {
-    //                     row == std::stoi(s);
-    //                     s = "";
-    //                 }
-    //             }
-    //             graph.at(row).at(col) = 1;
-    //         }
-    //     }
-    //     myfile.close();
 
     adjacency_matrix = graph;
     transit_matrix = adjacency_matrix;
@@ -69,15 +43,20 @@ DataParsing::DataParsing(std::string filename, int height) {
         
         for (unsigned i = 0; i < graph.size(); i++) {
             if (sum == 0) {
-                transit_matrix.at(i).at(j) = ((double) 1.0 / (double) height);
+                transit_matrix.at(i).at(j) = toPercise(((double) 1.0 / (double) height), 3); 
             } else {
-                transit_matrix.at(i).at(j) = ((double) graph.at(i).at(j) / (double) height);
+                transit_matrix.at(i).at(j) = toPrecise(((double) graph.at(i).at(j) / (double) height), 3);
             }
         }
     }
 }
 
-
+double DataParsing::toPrecise(double input, int precision) {
+    std::stringstream stream;
+    std::stream << std::fixed << std::setprecision(precision) << input;
+    std::string s = stream.str();
+    return s.stod();
+}
 std::vector<std::vector<int>> DataParsing::getAdjacencyMatrix() {
     return adjacency_matrix;
 }
