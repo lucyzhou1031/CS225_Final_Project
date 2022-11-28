@@ -1,6 +1,4 @@
-#include "final_project/src/Graph.h"
-#include "final_project/src/data.h"
-#include "final_project/src/pageRank.h"
+#include "final_project\src\data.h"
 
 #include <iostream>
 #include <fstream>

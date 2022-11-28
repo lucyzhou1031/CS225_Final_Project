@@ -7,7 +7,6 @@
 #pragma once
 
 #include <string>
-#include <limits.h>
 
 #include <Graph.h>
 #include <GraphNode.h>

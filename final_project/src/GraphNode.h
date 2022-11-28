@@ -1,5 +1,7 @@
 #pragma once
 
+#include "edge.h"
+
 #include <iostream>
 #include <queue>
 #include <string>
@@ -7,7 +9,6 @@
 #include <unordered_map>
 #include <map>
 
-#include "edge.h"
 
 class GraphNode{
     public:
