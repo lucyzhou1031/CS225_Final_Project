@@ -140,7 +140,22 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=Project
+CMAKE_PROJECT_NAME:STATIC=final_project
+
+//Value Computed by CMake
+CMAKE_PROJECT_VERSION:STATIC=1.2022.11.0
+
+//Value Computed by CMake
+CMAKE_PROJECT_VERSION_MAJOR:STATIC=1
+
+//Value Computed by CMake
+CMAKE_PROJECT_VERSION_MINOR:STATIC=2022
+
+//Value Computed by CMake
+CMAKE_PROJECT_VERSION_PATCH:STATIC=11
+
+//Value Computed by CMake
+CMAKE_PROJECT_VERSION_TWEAK:STATIC=0
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/usr/bin/ranlib
@@ -204,6 +219,9 @@ CMAKE_STRIP:FILEPATH=/usr/bin/strip
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
+//The directory containing a CMake configuration file for Catch2.
+Catch2_DIR:PATH=/usr/lib/cmake/Catch2
+
 //Value Computed by CMake
 Project_BINARY_DIR:STATIC=/workspaces/cs225/CS225_Final_Project/final_project/build
 
@@ -212,6 +230,24 @@ Project_IS_TOP_LEVEL:STATIC=ON
 
 //Value Computed by CMake
 Project_SOURCE_DIR:STATIC=/workspaces/cs225/CS225_Final_Project/final_project
+
+//Name of the computer/site where compile is being run
+SITE_NAME:STRING=a2fc1c582d74
+
+//Dependencies for the target
+cs225_LIB_DEPENDS:STATIC=general;lodepng;
+
+//Value Computed by CMake
+final_project_BINARY_DIR:STATIC=/workspaces/cs225/CS225_Final_Project/final_project/build
+
+//Value Computed by CMake
+final_project_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+final_project_SOURCE_DIR:STATIC=/workspaces/cs225/CS225_Final_Project/final_project
+
+//Dependencies for the target
+nim_graph_LIB_DEPENDS:STATIC=general;cs225;general;lodepng;
 
 
 ########################
@@ -316,7 +352,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=1
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=3
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
@@ -359,4 +395,6 @@ CMAKE_STRIP-ADVANCED:INTERNAL=1
 CMAKE_UNAME:INTERNAL=/usr/bin/uname
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
+//Catch2 full path to CatchAddTests.cmake helper file
+_CATCH_DISCOVER_TESTS_SCRIPT:INTERNAL=/usr/lib/cmake/Catch2/CatchAddTests.cmake
 

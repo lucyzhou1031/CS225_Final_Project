@@ -35,13 +35,6 @@ DataParsing::DataParsing(std::string filename, int height) {
         }
     }
 
-    double toPrecise(double input, int precision){
-        stringstream stream;
-        stream << std::fixed << std::setprecision(precision) << input;
-        string s = stream.str();
-        return s.stod();
-    }
-
     adjacency_matrix = graph;
     transit_matrix = adjacency_matrix;
     for (unsigned j = 0; j < graph.at(0).size(); j++) {

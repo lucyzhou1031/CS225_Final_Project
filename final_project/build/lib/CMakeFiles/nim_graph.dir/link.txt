@@ -1,0 +1,2 @@
+/usr/bin/ar qc libnim_graph.a CMakeFiles/nim_graph.dir/nim_graph/graph.cpp.o
+/usr/bin/ranlib libnim_graph.a

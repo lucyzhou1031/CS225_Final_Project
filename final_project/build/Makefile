@@ -113,8 +113,111 @@ preinstall/fast:
 
 # clear depends
 depend:
+	$(CMAKE_COMMAND) -P /workspaces/cs225/CS225_Final_Project/final_project/build/CMakeFiles/VerifyGlobs.cmake
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
+
+#=============================================================================
+# Target rules for targets named test
+
+# Build rule for target.
+test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test
+.PHONY : test
+
+# fast build rule for target.
+test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/build
+.PHONY : test/fast
+
+#=============================================================================
+# Target rules for targets named main
+
+# Build rule for target.
+main: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 main
+.PHONY : main
+
+# fast build rule for target.
+main/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
+.PHONY : main/fast
+
+#=============================================================================
+# Target rules for targets named lodepng
+
+# Build rule for target.
+lodepng: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lodepng
+.PHONY : lodepng
+
+# fast build rule for target.
+lodepng/fast:
+	$(MAKE) $(MAKESILENT) -f lib/CMakeFiles/lodepng.dir/build.make lib/CMakeFiles/lodepng.dir/build
+.PHONY : lodepng/fast
+
+#=============================================================================
+# Target rules for targets named cs225
+
+# Build rule for target.
+cs225: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 cs225
+.PHONY : cs225
+
+# fast build rule for target.
+cs225/fast:
+	$(MAKE) $(MAKESILENT) -f lib/CMakeFiles/cs225.dir/build.make lib/CMakeFiles/cs225.dir/build
+.PHONY : cs225/fast
+
+#=============================================================================
+# Target rules for targets named nim_graph
+
+# Build rule for target.
+nim_graph: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 nim_graph
+.PHONY : nim_graph
+
+# fast build rule for target.
+nim_graph/fast:
+	$(MAKE) $(MAKESILENT) -f lib/CMakeFiles/nim_graph.dir/build.make lib/CMakeFiles/nim_graph.dir/build
+.PHONY : nim_graph/fast
+
+#=============================================================================
+# Target rules for targets named src
+
+# Build rule for target.
+src: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src
+.PHONY : src
+
+# fast build rule for target.
+src/fast:
+	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/build
+.PHONY : src/fast
+
+entry/main.o: entry/main.cpp.o
+.PHONY : entry/main.o
+
+# target to build an object file
+entry/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/entry/main.cpp.o
+.PHONY : entry/main.cpp.o
+
+entry/main.i: entry/main.cpp.i
+.PHONY : entry/main.i
+
+# target to preprocess a source file
+entry/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/entry/main.cpp.i
+.PHONY : entry/main.cpp.i
+
+entry/main.s: entry/main.cpp.s
+.PHONY : entry/main.s
+
+# target to generate assembly for a file
+entry/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/entry/main.cpp.s
+.PHONY : entry/main.cpp.s
 
 # Help Target
 help:
@@ -124,6 +227,15 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... cs225"
+	@echo "... lodepng"
+	@echo "... main"
+	@echo "... nim_graph"
+	@echo "... src"
+	@echo "... test"
+	@echo "... entry/main.o"
+	@echo "... entry/main.i"
+	@echo "... entry/main.s"
 .PHONY : help
 
 
@@ -135,6 +247,7 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
+	$(CMAKE_COMMAND) -P /workspaces/cs225/CS225_Final_Project/final_project/build/CMakeFiles/VerifyGlobs.cmake
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 
