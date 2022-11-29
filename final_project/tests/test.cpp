@@ -1,8 +1,6 @@
-#include "Graph.h"
-#include "data.h"
-#include "pageRank.h"
-
-#include <catch2/catch_test_macros.hpp>
+#include "final_project/src/Graph.h"
+#include "final_project/src/data.h"
+#include "final_project/src/pageRank.h"
 
 #include <iostream>
 #include <fstream>
