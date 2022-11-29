@@ -58,9 +58,9 @@ if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
 endif()
 
 # tests_src at CMakeLists.txt:131 (file)
-file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/workspaces/cs225/CS225_Final_Project/final_project/tests/*.hpp")
+file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/workspaces/cs225/CS225_Final_Project/final_project/tests/*.cpp")
 set(OLD_GLOB
-  "/workspaces/cs225/CS225_Final_Project/final_project/tests/test.hpp"
+  "/workspaces/cs225/CS225_Final_Project/final_project/tests/test.cpp"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")

@@ -1,6 +1,8 @@
-#include "final_project/src/Graph.h"
-#include "final_project/src/data.h"
-#include "final_project/src/pageRank.h"
+#include "Graph.h"
+#include "data.h"
+#include "pageRank.h"
+
+#include <catch2/catch_test_macros.hpp>
 
 #include <iostream>
 #include <fstream>
@@ -16,17 +18,17 @@
 using namespace std;
 
 template <typename T>
-string print_matrix(vector<vector<T>> matrix, string file, string type){
-    string filename = "test_" + file + "_" + type + "_output.txt";
+string print_matrix(vector<vector<T>> matrix, string test, string type){
+    string filename = "test_" + test + "_" + type + "_output.txt";
     ofstream file;
     file.open(filename);
-    if(matrix.length() < 0 || matrix[0].length() < 0){
+    if(matrix.size() < 0 || matrix[0].size() < 0){
         file << "invalid demension";
         return "invalid demension";
     }
     if(file.is_open()){
-        for (int i = 0; i < matrix.length(); i++){
-            for (int j= 0; j < matrix[0].length(); j++){
+        for (unsigned int i = 0; i < matrix.size(); i++){
+            for (unsigned int j= 0; j < matrix[0].size(); j++){
                 file << to_string(matrix[i][j]);
                 file << " ";
             }
@@ -38,12 +40,13 @@ string print_matrix(vector<vector<T>> matrix, string file, string type){
 }
 
 TEST_CASE("test_extreme","[matrix_input, test_extreme_case]"){
-    DataParsing test_extreme = new DataParsing("final_project\extreme.txt",10);
+    DataParsing test_extreme("/workspaces/cs225/CS225_Final_Project/final_project/test_extreme.txt", 11);
     vector<vector<int>> testAdj = test_extreme.getAdjacencyMatrix();
-    print_matrix(testAdj);
-    vector<vector<int>> testTran = test_extreme.getTransitMatrix();
-    print_matrix(testTran);
-    REQUIRE(testAdj == {
+    print_matrix(testAdj, "extreme", "AdjMatrix");
+    vector<vector<double>> testTran = test_extreme.getTransitMatrix();
+    print_matrix(testTran, "extreme", "TranMatrix");
+
+    const vector<vector<int>> expected_adj = {
         {0,1,1,1,0,0,0,0,0,1,0},\
         {1,0,0,0,1,1,1,0,0,0,0},\
         {1,0,1,0,0,1,0,0,0,0,0},\
@@ -55,9 +58,11 @@ TEST_CASE("test_extreme","[matrix_input, test_extreme_case]"){
         {0,0,0,0,0,0,0,1,0,0,0},\
         {1,0,0,0,0,0,0,0,0,0,0},\
         {0,0,0,0,0,0,0,0,0,0,0}
-    });
+    };
 
-    REQUIRE(testTran = {
+    REQUIRE(testAdj == expected_adj);
+
+    const vector<vector<double>> expected_tran = {
         {0.000,0.250,0.333,0.500,0.000,0.000,0.000,0.000,0.000,1.000,0.111},\
         {0.250,0.000,0.000,0.000,1.000,0.500,0.500,0.000,0.000,0.000,0.111},\
         {0.250,0.000,0.333,0.000,0.000,0.500,0.000,0.000,0.000,0.000,0.111},\
@@ -69,17 +74,19 @@ TEST_CASE("test_extreme","[matrix_input, test_extreme_case]"){
         {0.000,0.000,0.000,0.000,0.000,0.000,0.000,1.000,0.000,0.000,0.111},\
         {0.250,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.111},\
         {0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.111}
-    });
+    };
+
+    REQUIRE(testTran == expected_tran);
 
 }
 
 TEST_CASE("test_small","[matrix_input, test_small_case]"){
-    DataParsing test_small = new DataParsing("final_project\extreme.txt",10);
+    DataParsing test_small("/workspaces/cs225/CS225_Final_Project/final_project/test_small.txt", 10);
     vector<vector<int>> testAdj = test_small.getAdjacencyMatrix();
-    print_matrix(testAdj);
-    vector<vector<int>> testTran = test_small.getTransitMatrix();
-    print_matrix(testTran);
-    REQUIRE(testAdj == {
+    print_matrix(testAdj, "small", "AdjMatrix");
+    vector<vector<double>> testTran = test_small.getTransitMatrix();
+    print_matrix(testTran, "small", "TranMatrix");
+    const vector<vector<int>> expected_adj = {
         {0,1,0,1,0,0,0,0,0,1},\
         {1,0,1,0,1,1,1,1,1,1},\
         {0,1,0,1,1,0,0,0,0,1},\
@@ -90,9 +97,11 @@ TEST_CASE("test_small","[matrix_input, test_small_case]"){
         {0,1,0,0,1,0,0,1,0,1},\
         {0,1,0,1,1,1,1,0,0,0},\
         {1,1,1,0,0,1,1,1,0,0}
-    });
+    };
 
-    REQUIRE(testTran == {
+    REQUIRE(testAdj == expected_adj);
+
+    const vector<vector<double>> expected_tran = {
         {0.000,0.125,0.000,0.200,0.000,0.000,0.000,0.000,0.000,0.167},\
         {0.333,0,000,0.250,0.000,0.250,0.167,0.200,0.250,0.200,0.167},\
         {0.000,0.125,0.000,0.250,0.250,0.000,0.000,0.000,0.000,0.167},\
@@ -103,6 +112,8 @@ TEST_CASE("test_small","[matrix_input, test_small_case]"){
         {0.000,0.125,0.000,0.000,0.250,0.000,0.000,0.250,0.000,0.167},\
         {0.000,0.125,0.000,0.250,0.250,0.167,0.200,0.000,0.000,0.000},\
         {0.333,0.125,0.250,0.000,0.000,0.167,0.200,0.250,0.000,0.000}
-    });
+    };
+
+    REQUIRE(testTran == expected_tran);
 }
 

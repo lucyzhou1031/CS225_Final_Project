@@ -1,6 +1,11 @@
 [
 {
   "directory": "/workspaces/cs225/CS225_Final_Project/final_project/build",
+  "command": "/usr/bin/clang++  -I/workspaces/cs225/CS225_Final_Project/final_project/lib -I/workspaces/cs225/CS225_Final_Project/final_project/src  -pedantic -Wall -Werror -Wfatal-errors -Wextra -Wno-unused-parameter -Wno-unused-variable -Wno-unused-function -g -D_GLIBCXX_DEBUG -O0 -gdwarf-4 -std=gnu++17 -o CMakeFiles/test.dir/tests/test.cpp.o -c /workspaces/cs225/CS225_Final_Project/final_project/tests/test.cpp",
+  "file": "/workspaces/cs225/CS225_Final_Project/final_project/tests/test.cpp"
+},
+{
+  "directory": "/workspaces/cs225/CS225_Final_Project/final_project/build",
   "command": "/usr/bin/clang++  -I/workspaces/cs225/CS225_Final_Project/final_project/lib -I/workspaces/cs225/CS225_Final_Project/final_project/src  -pedantic -Wall -Werror -Wfatal-errors -Wextra -Wno-unused-parameter -Wno-unused-variable -Wno-unused-function -g -D_GLIBCXX_DEBUG -O0 -gdwarf-4 -std=gnu++17 -o CMakeFiles/main.dir/entry/main.cpp.o -c /workspaces/cs225/CS225_Final_Project/final_project/entry/main.cpp",
   "file": "/workspaces/cs225/CS225_Final_Project/final_project/entry/main.cpp"
 },

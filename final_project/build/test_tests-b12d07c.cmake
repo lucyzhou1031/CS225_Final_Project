@@ -1,0 +1,5 @@
+add_test( test_extreme /workspaces/cs225/CS225_Final_Project/final_project/build/test test_extreme  )
+set_tests_properties( test_extreme PROPERTIES WORKING_DIRECTORY /workspaces/cs225/CS225_Final_Project/final_project/build)
+add_test( test_small /workspaces/cs225/CS225_Final_Project/final_project/build/test test_small  )
+set_tests_properties( test_small PROPERTIES WORKING_DIRECTORY /workspaces/cs225/CS225_Final_Project/final_project/build)
+set( test_TESTS test_extreme test_small)

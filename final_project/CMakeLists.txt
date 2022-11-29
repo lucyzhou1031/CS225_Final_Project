@@ -128,7 +128,7 @@ add_subdirectory(${lib_dir})
 add_subdirectory(${src_dir})
 
 # Add the Catch2 entrypoint using Catch2, our libs and src code.
-file(GLOB_RECURSE tests_src CONFIGURE_DEPENDS ${tests_dir}/*.hpp)
+file(GLOB_RECURSE tests_src CONFIGURE_DEPENDS ${tests_dir}/*.cpp)
 
 include(Catch)
 

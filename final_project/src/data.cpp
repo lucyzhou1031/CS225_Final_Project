@@ -19,24 +19,34 @@ DataParsing::DataParsing(std::string filename, int height) {
         }
         lines.at(i) = Trim(lines.at(i));
         std::vector<std::string> each_line;
-        int j = SplitString(lines.at(i), '  ', each_line);
+        int j = SplitString(lines.at(i), ' ', each_line);
         if (each_line.size() != 2) {
             continue;
         }
         for (int k = 0; k < j; k++) {
             each_line.at(k) = Trim(each_line.at(k));
         }
+        int row = std::stoi(each_line.at(1));
+        int col = std::stoi(each_line.at(0));
+        std::cout << row << " " << col << std::endl;
+        graph.at(row).at(col) = 1;
         if (row >= 0 && row <= height_ && col >= 0 && col <= height_) {
-            row = std::stoi(each_line.at(1));
-            col = std::stoi(each_line.at(0));
-            visited.at(row) = true;
-            visited.at(col) = true;
-            graph.at(row).at(col) = 1;
+            
         }
     }
 
-    adjacency_matrix = graph;
-    transit_matrix = adjacency_matrix;
+    // adjacency_matrix = graph;
+    // transit_matrix = adjacency_matrix;
+    for (unsigned i = 0; i < adjacency_matrix.size(); i++) {
+        std::vector<double> result;
+        std::vector<int> uu;
+        for (unsigned j = 0; j < adjacency_matrix.at(i).size(); j++) {
+            result.push_back((double)graph.at(i).at(j));
+            uu.push_back(graph.at(i).at(j));
+        }
+        adjacency_matrix.push_back(uu);
+        transit_matrix.push_back(result);
+    }
     for (unsigned j = 0; j < graph.at(0).size(); j++) {
         int sum = 0;
         for (unsigned i = 0; i < graph.size(); i++) {
@@ -45,9 +55,9 @@ DataParsing::DataParsing(std::string filename, int height) {
         
         for (unsigned i = 0; i < graph.size(); i++) {
             if (sum == 0) {
-                transit_matrix.at(i).at(j) = toPercise(((double) 1.0 / (double) height), 3); 
+                transit_matrix.at(i).at(j) = toPrecise(((double) 1.0 / (double) height_), 3); 
             } else {
-                transit_matrix.at(i).at(j) = toPrecise(((double) graph.at(i).at(j) / (double) height), 3);
+                transit_matrix.at(i).at(j) = toPrecise(((double) graph.at(i).at(j) / (double) height_), 3);
             }
         }
     }
@@ -55,9 +65,9 @@ DataParsing::DataParsing(std::string filename, int height) {
 
 double DataParsing::toPrecise(double input, int precision) {
     std::stringstream stream;
-    std::stream << std::fixed << std::setprecision(precision) << input;
+    stream << std::fixed << std::setprecision(precision) << input;
     std::string s = stream.str();
-    return s.stod();
+    return std::stod(s);
 }
 std::vector<std::vector<int>> DataParsing::getAdjacencyMatrix() {
     return adjacency_matrix;
