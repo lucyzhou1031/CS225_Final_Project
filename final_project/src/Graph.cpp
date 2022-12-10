@@ -1,4 +1,5 @@
-// #include "Graph.h"
+#include "Graph.h"
+
 
 // Graph::Graph(){
 //     // i don know what to do with this constructor :(
@@ -73,3 +74,43 @@
 //         return;
 //     }
 // }
+
+void Graph::addVertex(int s) {
+    if (graph.find(s) == graph.end()) {
+        graph[s] = {};
+    }
+        
+}
+void Graph::addEdge(int s1, int s2) {
+    if (graph.find(s1) != graph.end() && graph.find(s2) != graph.end()) {
+        graph[s1].push_back(s2);
+    } else {
+        std::cout << "Wrong node ID" << std::endl;
+    }
+}
+
+std::map<int, std::vector<int>> Graph::getGraph() {
+    return graph;
+}
+
+void Graph::DFS(int start) {
+    visited.clear();
+    visited[start] = true;
+    for (int adj : graph.at(start)) {
+        if (visited.find(adj) == visited.end()) {
+            DFS(adj);
+        }
+    }
+}
+
+std::vector<int> Graph::findAdjacency(int node) {
+    return graph.at(node);
+}
+
+std::vector<int> Graph::getTraversalPath(int start) {
+    std::vector<int> path;
+    for (auto it = visited.begin(); it != visited.end(); it++) {
+        path.push_back(it -> first);
+    }
+    return path;
+}

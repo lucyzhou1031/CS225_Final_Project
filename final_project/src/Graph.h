@@ -1,12 +1,12 @@
-// #pragma once
+#pragma once
 
-// #include <iostream>
-// #include <queue>
-// #include <string>
-// #include <vector>
-// #include <unordered_map>
-// #include <map>
-// #include <set>
+#include <iostream>
+#include <queue>
+#include <string>
+#include <vector>
+#include <unordered_map>
+#include <map>
+#include <set>
 
 // #include "edge.h"
 // #include "GraphNode.h"
@@ -76,3 +76,19 @@
 //         // std::unordered_map<GraphNode, string> vertex_label_map;
 
 // };
+
+class Graph {
+    private:
+        std::map<int, std::vector<int>> graph;
+        std::unordered_map<int, bool> visited;
+        //int count_v = 0;
+    public:
+        Graph() = default;
+        void addVertex(int s);
+        void addEdge(int s1, int s2);
+        void DFS(int start);
+        std::map<int, std::vector<int>> getGraph();
+        std::vector<int> findAdjacency(int node);
+        std::vector<int> getTraversalPath(int start);
+            
+};
