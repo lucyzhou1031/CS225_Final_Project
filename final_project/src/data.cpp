@@ -20,27 +20,24 @@ DataParsing::DataParsing(std::string filename, int height) {
         lines.at(i) = Trim(lines.at(i));
         std::vector<std::string> each_line;
         int j = SplitString(lines.at(i), ' ', each_line);
-        if (each_line.size() != 2) {
+        if (each_line.size() != 4) {
             continue;
         }
         for (int k = 0; k < j; k++) {
             each_line.at(k) = Trim(each_line.at(k));
         }
-        int row = std::stoi(each_line.at(1));
+        int row = std::stoi(each_line.at(3));
         int col = std::stoi(each_line.at(0));
-        std::cout << row << " " << col << std::endl;
         graph.at(row).at(col) = 1;
         if (row >= 0 && row <= height_ && col >= 0 && col <= height_) {
             
         }
     }
 
-    // adjacency_matrix = graph;
-    // transit_matrix = adjacency_matrix;
-    for (unsigned i = 0; i < adjacency_matrix.size(); i++) {
+    for (unsigned i = 0; i < graph.size(); i++) {
         std::vector<double> result;
         std::vector<int> uu;
-        for (unsigned j = 0; j < adjacency_matrix.at(i).size(); j++) {
+        for (unsigned j = 0; j < graph.at(i).size(); j++) {
             result.push_back((double)graph.at(i).at(j));
             uu.push_back(graph.at(i).at(j));
         }
@@ -57,7 +54,7 @@ DataParsing::DataParsing(std::string filename, int height) {
             if (sum == 0) {
                 transit_matrix.at(i).at(j) = toPrecise(((double) 1.0 / (double) height_), 3); 
             } else {
-                transit_matrix.at(i).at(j) = toPrecise(((double) graph.at(i).at(j) / (double) height_), 3);
+                transit_matrix.at(i).at(j) = toPrecise(((double) graph.at(i).at(j) / (double) sum), 3);
             }
         }
     }
