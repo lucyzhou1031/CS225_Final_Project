@@ -5,7 +5,7 @@ In this project, we will be finding which website has greater importance than ot
 
 ### Data Format
 
-We are accessing our dataset from Stanford Large Network Dataset Collection (http://snap.stanford.edu/data/web-Google.html). In this dataset, each website is represented by a node ID, and the ID is unique for different web pages. Each line of the dataset has two nodes that are paired together, with the left one is the starting node (starting web page) and the left one is the destination (the ending web page), meaning that there is a hyperlink in the web page represented by node A that can direct the user to the web page represented by node B. The nodes and pairs are all unordered. After combining all pairs together, these nodes will form a directed graph. This dataset has 875714 nodes and 5105039 edges since a node can pair with multiple other different nodes. We are planning to use the whole dataset at this point. 
+We are accessing our dataset from Stanford Large Network Dataset Collection (http://snap.stanford.edu/data/web-Google.html). In this dataset, each website is represented by a node ID, and the ID is unique for different web pages. Each line of the dataset has two nodes that are paired together, with the left one is the starting node (starting web page) and the left one is the destination (the ending web page), meaning that there is a hyperlink in the web page represented by node A that can direct the user to the web page represented by node B. The nodes and pairs are all unordered. Node IDs is a sequence of unique integers. We will be using the starting node IDs as the columns and the ending node IDs as the rows of the adjacent matrix. We initialize this adjacency matrix as a zero matrix, then changing the entry at row A and column B to be 1 when there exists a jump from node ID B to node ID A. We will then implement the transit matrix based on the adjacency matrix. We divide each entry (either 0 or 1) with the sum of its column or the height of the matrix if its column sums to 0. Each entry of the matrix represents the probability that node A links to node B. The entries of our transit matrix will then become the weight of our directed graph. After combining all pairs together, these nodes will form a directed graph. This dataset has 875714 nodes and 5105039 edges since a node can pair with multiple other different nodes. We are planning to use the whole dataset at this point. 
 
 ### Data Correction
 
@@ -15,6 +15,7 @@ To ensure that the data is correct, we need to make sure that it’s ID is valid
 
 We will be implementing a directed graph class object to store the data. This directed graph class will have a map that includes all the nodes as keys, and the list of nodes the key points to as values. The class will also include an adjacency matrix.
 The Big-O approximation should be at least O(V^2), where V is the number of vertices in the graph, because we’re dealing with V by V matrices.
+
 
 ## Algorithm
 
