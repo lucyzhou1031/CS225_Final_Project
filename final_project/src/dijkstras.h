@@ -2,6 +2,7 @@
 #include <Graph.h>
 
 std::pair<int, std::unordered_set<int>> Dijkstra(Graph g, int source, int destination);
+int findNext(std::unordered_map<int, bool> visited, std::unordered_map<int, int> distance);
 
 std::pair<int, std::unordered_set<int>> Dijkstra(Graph g, int source, int destination){
     std::unordered_map<int, int> distance;
@@ -17,15 +18,15 @@ std::pair<int, std::unordered_set<int>> Dijkstra(Graph g, int source, int destin
     distance[curr] = 0;
     visited[curr] = true;
     for (auto i : g.findAdjacency(source)){
-        distance[i] = getEdgeWeight(source, i);
+        distance[i] = g.getEdgeWeight(source, i);
         previous[i] = source;
     }
     count --;
     for ( ; count > 0 ; count--){
-        curr = findNext(visited);
+        curr = findNext(visited, distance);
         visited[curr] = true;
         for (auto i : g.findAdjacency(curr)){
-            dist = getEdgeWeight(curr, i)+ distance[curr];
+            int dist = g.getEdgeWeight(curr, i)+ distance[curr];
             if (dist < distance[i]){
                 distance[i] = dist;
                 previous[i] = curr;
@@ -43,10 +44,9 @@ std::pair<int, std::unordered_set<int>> Dijkstra(Graph g, int source, int destin
     return ret;
 }
 
-int findNext(std::unordered_map<int, bool> visited, std::unordered_map<int, int> distance);
 int findNext(std::unordered_map<int, bool> visited, std::unordered_map<int, int> distance){
     std::set<int> set;
-    for (auto i : dist){
+    for (auto i : distance){
         set.insert(i.second);
     }
     for (int i : set){

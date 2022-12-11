@@ -33,11 +33,15 @@ DataParsing::DataParsing(std::string filename, int height) {
             mapping_idx[row] = count;
             row = (int) count;
             count++;
+        } else {
+            row = mapping_idx.at(row);
         }
         if (mapping_idx.find(col) == mapping_idx.end()) {
             mapping_idx[col] = count;
             col = (int) count;
             count++;
+        } else {
+            col = mapping_idx.at(col);
         }
         graph.at(row).at(col) = 1;
     }
@@ -82,4 +86,33 @@ std::vector<std::vector<double>> DataParsing::getTransitMatrix() {
 
 std::map<int, unsigned> DataParsing::getMap() {
     return mapping_idx;
+}
+
+Graph DataParsing::getGraph() {
+    for (auto it = mapping_idx.begin(); it != mapping_idx.end(); it++) {
+        g.addVertex(it -> first);
+    }
+    
+    for (unsigned i = 0; i < transit_matrix.size(); i++) {
+        for (unsigned j = 0; j < transit_matrix.at(i).size(); j++) {
+            int fromID = 0;
+            int toID = 0;
+            int count = 0;
+            for (auto it = mapping_idx.begin(); it != mapping_idx.end(); it++) {
+                if (it -> second == i) {
+                    toID = it -> first;
+                    count++;
+                }
+                if (it -> first == (int)j) {
+                    fromID = it -> first;
+                    count++;
+                }
+                if (count == 2) {
+                    break;
+                }
+            }
+            g.addEdge(fromID, toID, transit_matrix.at(i).at(j));
+        }
+    }
+    return g;
 }

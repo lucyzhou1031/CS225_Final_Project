@@ -3,7 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <GraphNode.h>
-
+#include <Graph.h>
 
 class DataParsing {
     public:
@@ -11,6 +11,7 @@ class DataParsing {
         std::vector<std::vector<int>> getAdjacencyMatrix();
         std::vector<std::vector<double>> getTransitMatrix();
         std::map<int, unsigned> getMap();
+        Graph getGraph();
 
     private:
         int height_;
@@ -18,4 +19,5 @@ class DataParsing {
         std::vector<std::vector<double>> transit_matrix;
         double toPrecise(double input, int precision);
         std::map<int, unsigned> mapping_idx;
+        Graph g;
 };
