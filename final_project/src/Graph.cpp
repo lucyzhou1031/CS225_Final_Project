@@ -97,7 +97,7 @@ void Graph::DFS(int start, std::map<int, int>& dj) {
     visited.insert(start);
     for (auto adj : graph.at(start)) {
         if (visited.find(adj.first) == visited.end()) {
-            dj[start] = adj.first;
+            dj[adj.first] = start;
             DFS(adj.first, dj);
         }
     }

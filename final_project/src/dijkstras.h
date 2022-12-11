@@ -1,37 +1,57 @@
 #include <limits.h>
 
-// Dijkstra(Graph, source, destination):
+std::pair<int, std::unordered_set<int>> Dijkstra(Graph g, int source, int destination);
 
-//   initialize distances  // initialize tentative distance value
-//   initialize previous   // initialize a map that maps current node -> its previous node
-//   initialize priority_queue   // initialize the priority queue
-//   initialize visited
-
-//   while the top of priority_queue is not destination:
-//       get the current_node from priority_queue
-//       for neighbor in current_node's neighbors and not in visited:
-//           if update its neighbor's distances:
-//               previous[neighbor] = current_node
-//       save current_node into visited
-
-//   extract path from previous
-//   return path and distance
-
-Dijkstra(Graph g, int source, int destination){
-    // initialize tentative distance value
-    std::map<int, int> tentative_distance;
-    std::map<int, int> previous;
-    std::queue<int> priority_queue;
-    std::unordered_set<int> visited;
-    std::unorderd_set<int> vis = g.getTraversalPath(source);
-    for (auto i : vis){
-        if (i==source){
-            tentative_distance[i] = 0;
-        } else{
-            tentative_distance[i] = INT_MAX;
+std::pair<int, std::unordered_set<int>> Dijkstra(Graph g, int source, int destination){
+    std::unordered_map<int, int> distance;
+    std::unordered_map<int, int> previous;
+    std::unordered_map<int, bool> visited;
+    int count = 0;
+    for (auto i : g.getTraversalPath(source)){
+        count++;
+        distance[i] = INT_MAX;
+        visited[i] = false;
+    }
+    int curr = source;
+    distance[curr] = 0;
+    visited[curr] = true;
+    for (auto i : g.findAdjacency(source)){
+        distance[i] = getEdgeWeight(source, i);
+        previous[i] = source;
+    }
+    count --;
+    for ( ; count > 0 ; count--){
+        curr = findNext(visited);
+        visited[curr] = true;
+        for (auto i : g.findAdjacency(curr)){
+            dist = getEdgeWeight(curr, i)+ distance[curr];
+            if (dist < distance[i]){
+                distance[i] = dist;
+                previous[i] = curr;
+            }
         }
     }
-    // initialize a map that maps current node -> its previous node
+    std::unordered_set<int> path;
+    int x = destination;
+    path.insert(x);
+    while (x!=source){
+        x = previous[x];
+        path.insert(path.begin(), x);
+    }
+    std::pair<int, std::unordered_set<int>> ret = {distance[destination], path};
+    return ret;
+}
 
-
+int findNext(std::unordered_map<int, bool> visited, std::unordered_map<int, int> distance);
+int findNext(std::unordered_map<int, bool> visited, std::unordered_map<int, int> distance){
+    std::set<int> set;
+    for (auto i : dist){
+        set.insert(i.second);
+    }
+    for (int i : set){
+        if (visited[i]==false){
+            return i;
+        }
+    }
+    return -1;
 }
