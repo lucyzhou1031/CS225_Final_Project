@@ -79,38 +79,37 @@ void Graph::addVertex(int s) {
     if (graph.find(s) == graph.end()) {
         graph[s] = {};
     }
-        
 }
-void Graph::addEdge(int s1, int s2) {
+void Graph::addEdge(int s1, int s2, int weight) {
     if (graph.find(s1) != graph.end() && graph.find(s2) != graph.end()) {
-        graph[s1].push_back(s2);
+        graph[s1].push_back(std::make_pair(s2, weight));
     } else {
         std::cout << "Wrong node ID" << std::endl;
     }
 }
 
-std::map<int, std::vector<int>> Graph::getGraph() {
+std::map<int, std::vector<std::pair<int, double>>> Graph::getGraph() {
     return graph;
 }
 
 void Graph::DFS(int start) {
     visited.clear();
-    visited[start] = true;
-    for (int adj : graph.at(start)) {
-        if (visited.find(adj) == visited.end()) {
-            DFS(adj);
+    visited.insert(start);
+    for (auto adj : graph.at(start)) {
+        if (visited.find(adj.first) == visited.end()) {
+            DFS(adj.first);
         }
     }
 }
 
 std::vector<int> Graph::findAdjacency(int node) {
-    return graph.at(node);
+    std::vector<int> adjacency;
+    for (auto it : graph.at(node)) {
+        adjacency.push_back(it.first);
+    }
+    return adjacency;
 }
 
-std::vector<int> Graph::getTraversalPath(int start) {
-    std::vector<int> path;
-    for (auto it = visited.begin(); it != visited.end(); it++) {
-        path.push_back(it -> first);
-    }
-    return path;
+std::unordered_set<int> Graph::getTraversalPath(int start) {
+    return visited;
 }

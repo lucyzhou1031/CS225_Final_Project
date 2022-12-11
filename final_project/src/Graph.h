@@ -7,6 +7,7 @@
 #include <unordered_map>
 #include <map>
 #include <set>
+#include <unordered_set>
 
 // #include "edge.h"
 // #include "GraphNode.h"
@@ -79,16 +80,16 @@
 
 class Graph {
     private:
-        std::map<int, std::vector<int>> graph;
-        std::unordered_map<int, bool> visited;
+        std::map<int, std::vector<std::pair<int, double>>> graph;
+        std::unordered_set<int> visited;
         //int count_v = 0;
     public:
         Graph() = default;
         void addVertex(int s);
-        void addEdge(int s1, int s2);
+        void addEdge(int s1, int s2, int weight);
         void DFS(int start);
-        std::map<int, std::vector<int>> getGraph();
+        std::map<int, std::vector<std::pair<int, double>>> getGraph();
         std::vector<int> findAdjacency(int node);
-        std::vector<int> getTraversalPath(int start);
+        std::unordered_set<int> getTraversalPath(int start);
             
 };
