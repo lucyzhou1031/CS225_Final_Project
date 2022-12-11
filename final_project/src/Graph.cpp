@@ -92,12 +92,13 @@ std::map<int, std::vector<std::pair<int, double>>> Graph::getGraph() {
     return graph;
 }
 
-void Graph::DFS(int start) {
+void Graph::DFS(int start, std::map<int, int>& dj) {
     visited.clear();
     visited.insert(start);
     for (auto adj : graph.at(start)) {
         if (visited.find(adj.first) == visited.end()) {
-            DFS(adj.first);
+            dj[start] = adj.first;
+            DFS(adj.first, dj);
         }
     }
 }
