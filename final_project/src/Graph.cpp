@@ -112,5 +112,6 @@ std::vector<int> Graph::findAdjacency(int node) {
 }
 
 std::unordered_set<int> Graph::getTraversalPath(int start) {
+    DFS(start);
     return visited;
 }
