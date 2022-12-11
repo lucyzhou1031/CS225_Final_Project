@@ -92,13 +92,12 @@ std::map<int, std::vector<std::pair<int, double>>> Graph::getGraph() {
     return graph;
 }
 
-void Graph::DFS(int start, std::map<int, int>& dj) {
+void Graph::DFS(int start) {
     visited.clear();
     visited.insert(start);
     for (auto adj : graph.at(start)) {
         if (visited.find(adj.first) == visited.end()) {
-            dj[adj.first] = start;
-            DFS(adj.first, dj);
+            DFS(adj.first);
         }
     }
 }
@@ -109,6 +108,15 @@ std::vector<int> Graph::findAdjacency(int node) {
         adjacency.push_back(it.first);
     }
     return adjacency;
+}
+
+double Graph::getEdgeWeight(int source, int destination) {
+    for (auto it : graph.at(source)) {
+        if (it.first == destination) {
+            return it.second;
+        }
+    }
+    return -1;
 }
 
 std::unordered_set<int> Graph::getTraversalPath(int start) {
