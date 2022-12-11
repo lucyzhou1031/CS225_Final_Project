@@ -89,6 +89,7 @@ class Graph {
         void addEdge(int s1, int s2, int weight);
         void DFS(int start);
         std::map<int, std::vector<std::pair<int, double>>> getGraph();
+        //findAdjacency: return vector of adj node witout speicific order
         std::vector<int> findAdjacency(int node);
         std::unordered_set<int> getTraversalPath(int start);
         double getEdgeWeight(int source, int destination);
