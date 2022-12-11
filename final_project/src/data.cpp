@@ -14,6 +14,7 @@ DataParsing::DataParsing(std::string filename, int height) {
     std::vector<std::string> lines;
     int size = SplitString(file, '\n', lines);
     unsigned count = 0;
+    //count the latest col/row num
     for (int i = 0; i < size; i++) {
         if(!isdigit(lines.at(i).at(0))) {
             continue;
