@@ -83,13 +83,13 @@ class Graph {
     private:
         std::map<int, std::vector<std::pair<int, double>>> graph;
         std::unordered_set<int> visited;
-        std::map<int, int> dj;
+        // std::map<int, int> dj;
         //int count_v = 0;
     public:
         Graph() = default;
         void addVertex(int s);
         void addEdge(int s1, int s2, int weight);
-        void DFS(int start, std::map<int, int>& dj);
+        void DFS(int start);
         std::map<int, std::vector<std::pair<int, double>>> getGraph();
         std::vector<int> findAdjacency(int node);
         std::unordered_set<int> getTraversalPath(int start);
