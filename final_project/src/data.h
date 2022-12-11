@@ -1,3 +1,4 @@
+#pragma once
 #include <Graph.h>
 #include <iostream>
 #include <vector>
@@ -9,11 +10,12 @@ class DataParsing {
         DataParsing(std::string filename, int height);
         std::vector<std::vector<int>> getAdjacencyMatrix();
         std::vector<std::vector<double>> getTransitMatrix();
-
+        std::map<int, unsigned> getMap();
 
     private:
         int height_;
         std::vector<std::vector<int>> adjacency_matrix;
         std::vector<std::vector<double>> transit_matrix;
         double toPrecise(double input, int precision);
+        std::map<int, unsigned> mapping_idx;
 };

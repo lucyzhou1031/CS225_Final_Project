@@ -13,6 +13,7 @@ DataParsing::DataParsing(std::string filename, int height) {
     std::vector<std::vector<int>> graph(height_, nodes);
     std::vector<std::string> lines;
     int size = SplitString(file, '\n', lines);
+    unsigned count = 0;
     for (int i = 0; i < size; i++) {
         if(!isdigit(lines.at(i).at(0))) {
             continue;
@@ -23,17 +24,23 @@ DataParsing::DataParsing(std::string filename, int height) {
         if (each_line.size() != 4) {
             continue;
         }
-        for (int k = 0; k < j; k++) {
+        for (unsigned k = 0; k < each_line.size(); k++) {
             each_line.at(k) = Trim(each_line.at(k));
         }
         int row = std::stoi(each_line.at(3));
         int col = std::stoi(each_line.at(0));
-        graph.at(row).at(col) = 1;
-        if (row >= 0 && row <= height_ && col >= 0 && col <= height_) {
-            
+        if (mapping_idx.find(row) == mapping_idx.end()) {
+            mapping_idx[row] = count;
+            row = (int) count;
+            count++;
         }
+        if (mapping_idx.find(col) == mapping_idx.end()) {
+            mapping_idx[col] = count;
+            col = (int) count;
+            count++;
+        }
+        graph.at(row).at(col) = 1;
     }
-
     for (unsigned i = 0; i < graph.size(); i++) {
         std::vector<double> result;
         std::vector<int> uu;
@@ -71,4 +78,8 @@ std::vector<std::vector<int>> DataParsing::getAdjacencyMatrix() {
 }
 std::vector<std::vector<double>> DataParsing::getTransitMatrix() {
     return transit_matrix;
+}
+
+std::map<int, unsigned> DataParsing::getMap() {
+    return mapping_idx;
 }

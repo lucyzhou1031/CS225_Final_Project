@@ -79,6 +79,7 @@
 // };
 
 class Graph {
+    
     private:
         std::map<int, std::vector<std::pair<int, double>>> graph;
         std::unordered_set<int> visited;
@@ -92,5 +93,6 @@ class Graph {
         std::map<int, std::vector<std::pair<int, double>>> getGraph();
         std::vector<int> findAdjacency(int node);
         std::unordered_set<int> getTraversalPath(int start);
+        double getEdgeWeight(int source, int destination);
             
 };

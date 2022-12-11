@@ -111,7 +111,15 @@ std::vector<int> Graph::findAdjacency(int node) {
     return adjacency;
 }
 
+double Graph::getEdgeWeight(int source, int destination) {
+    for (auto it : graph.at(source)) {
+        if (it.first == destination) {
+            return it.second;
+        }
+    }
+    return -1;
+}
+
 std::unordered_set<int> Graph::getTraversalPath(int start) {
-    DFS(start);
     return visited;
 }

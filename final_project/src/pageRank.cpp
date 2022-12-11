@@ -4,13 +4,36 @@
 
 PageRank::PageRank(DataParsing data) {
     A_ = data.getTransitMatrix();
-    for (unsigned i = 0; i < A_.size(); i++) {
-        std::vector<double> to_push;
-        for (unsigned j = 0; j < A_.at(i).size(); j++) {
-            to_push.push_back(1);
+    mapping = data.getMap();
+}
+
+std::vector<int> PageRank::findTopTen() {
+    x_ = power_iteration(0.000000000001, 1000);
+    std::vector<unsigned> result_idx;
+    
+    int count = 0;
+    while (count >= 10) {
+        double max = -1;
+        double max_idx = -1;
+        for (unsigned i = 0; i < x_.size(); i++) {
+            if (x_.at(i) > max) {
+                max = x_.at(i);
+                max_idx = i;
+            }
         }
-        ones.push_back(to_push);
+        result_idx.push_back(max_idx);
+        x_.at(max_idx) = -1;
+        count++;
     }
+    std::vector<int> top_ten;
+    for (unsigned i = 0; i < result_idx.size(); i++) {
+        for (auto it = mapping.begin(); it != mapping.end(); it++) {
+            if (it -> second == result_idx.at(i)) {
+                top_ten.push_back(it -> first);
+            }
+        }
+    }
+    return top_ten;
 }
 
 std::vector<double> PageRank::multiply(std::vector<std::vector<double>> A, std::vector<double> x) {
@@ -24,7 +47,7 @@ std::vector<double> PageRank::multiply(std::vector<std::vector<double>> A, std::
     }
     return to_return;
 }
-std::vector<double> PageRank::power_iteration(double alpha, double tol, int max_iter) {
+std::vector<double> PageRank::power_iteration(double tol, int max_iter) {
     std::vector<double> x0(0, A_.size());
     x0.at(0) = 1;
     double n = norm(x0, 1);
