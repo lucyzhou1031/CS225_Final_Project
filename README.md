@@ -1,7 +1,7 @@
 # CS225_Final_Project
 
-# Github File Structure
+## Github File Structure
 
-# Code Execution
+## Code Execution
 
-# Test Suite
+## Test Suite
