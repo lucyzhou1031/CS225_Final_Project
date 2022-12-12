@@ -16,20 +16,26 @@ DataParsing::DataParsing(std::string filename, int height) {
     unsigned count = 0;
     //count the latest col/row num
     for (int i = 0; i < size; i++) {
-        if(!isdigit(lines.at(i).at(0))) {
-            continue;
-        }
+        // if(!isdigit(lines.at(i).at(0))) {
+        //     continue;
+        // }
         lines.at(i) = Trim(lines.at(i));
         std::vector<std::string> each_line;
         int j = SplitString(lines.at(i), ' ', each_line);
-        if (each_line.size() != 4) {
-            continue;
-        }
         for (unsigned k = 0; k < each_line.size(); k++) {
             each_line.at(k) = Trim(each_line.at(k));
         }
-        int row = std::stoi(each_line.at(3));
-        int col = std::stoi(each_line.at(0));
+        std::vector<int> digits;
+        for (std::string i : each_line) {
+            if (i != "") {
+                digits.push_back(std::stoi(i));
+            }
+        }
+        if (digits.size() != 2) {
+            continue;
+        }
+        int row = digits.at(1);
+        int col = digits.at(0);
         if (mapping_idx.find(row) == mapping_idx.end()) {
             mapping_idx[row] = count;
             row = (int) count;

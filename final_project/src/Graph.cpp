@@ -113,9 +113,7 @@ std::vector<int> Graph::findDFSorder(){
 
 std::vector<int> Graph::findAdjacency(int node) {
     std::vector<int> adjacency;
-    std::cout << __LINE__ << std::endl;
     for (auto it : graph.at(node)) {
-        std::cout << __LINE__ << std::endl;
         adjacency.push_back(it.first);
     }
     return adjacency;

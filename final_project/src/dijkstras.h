@@ -21,7 +21,6 @@ std::pair<double, std::unordered_set<int>> Dijkstra(Graph g, int source, int des
     std::unordered_map<int, bool> visited;
     int count = 0;
     bool connected = false;
-    std::cout << __LINE__ << std::endl;
     for (auto i : g.getTraversalPath(source)){
         if (i == destination) connected = true;
         count++;
@@ -29,14 +28,12 @@ std::pair<double, std::unordered_set<int>> Dijkstra(Graph g, int source, int des
         visited[i] = false;
     }
     if (!connected){
-        return std::pair<double, std::unordered_set<int>> {toPre(-1.0, 3), std::unordered_set<int>{}};
+        return std::pair<double, std::unordered_set<int>> {distance[source], std::unordered_set<int>{}};
     }
-    std::cout << __LINE__ << std::endl;
     //count = num of node connected to src
     int curr = source;
     distance[curr] = toPre(0.0, 3);
     visited[curr] = true;
-    std::cout << __LINE__ << std::endl;
     for (auto i : g.findAdjacency(source)){
         //prevent new distance updated when src -> src
         if(i != source){
@@ -44,13 +41,10 @@ std::pair<double, std::unordered_set<int>> Dijkstra(Graph g, int source, int des
             previous[i] = source;
         }   
     }
-    std::cout << __LINE__ << std::endl;
     count--;
     for ( ; count > 0 ; count--){
-        std::cout << __LINE__ << std::endl;
         curr = findNext(visited, distance);
         visited[curr] = true;
-        std::cout << __LINE__ << std::endl;
         for (auto i : g.findAdjacency(curr)){
             if (i != curr) {
                 double dist = toPre(g.getEdgeWeight(curr, i) + distance[curr], 3);
@@ -62,21 +56,16 @@ std::pair<double, std::unordered_set<int>> Dijkstra(Graph g, int source, int des
             
         }
     }
-    for (auto i : previous) {
-        std::cout << i.first << " " << i.second << std::endl;
+    std::unordered_set<int> path;
+    int x = destination;
+    path.insert(x);
+    while (x != source){
+        x = previous[x];
+        path.insert(path.begin(), x);
     }
-    // std::cout << __LINE__ << std::endl;
-    // std::unordered_set<int> path;
-    // int x = destination;
-    // path.insert(x);
-    // while (x != source){
-    //     std::cout << __LINE__ << " " <<x << " " << previous[x]<< " " << source<< " " << destination <<std::endl;
-    //     x = previous[x];
-    //     path.insert(path.begin(), x);
-    // }
-    // std::pair<double, std::unordered_set<int>> ret = {toPre(distance[destination], 3), path};
-    // return ret;
-    return {};
+    std::pair<double, std::unordered_set<int>> ret = {toPre(distance[destination], 3), path};
+    return ret;
+    
 }
 
 int findNext(std::unordered_map<int, bool> visited, std::unordered_map<int, double> distance){

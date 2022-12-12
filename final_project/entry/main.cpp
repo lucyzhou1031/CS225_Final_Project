@@ -4,9 +4,13 @@
 #include <pageRank.h>
 
 int main() {
-    DataParsing data("web-Google.txt", 875713);
+    std::cout << __LINE__ << std::endl;
+    DataParsing data("/workspaces/cs225/CS225_Final_Project/final_project/web-Google_copy.txt", 2000);
+    std::cout << __LINE__ << std::endl;
     std::map<int, unsigned> mapping = data.getMap();
+    std::cout << __LINE__ << std::endl;
     std::vector<std::vector<double>> transit = data.getTransitMatrix();
+    std::cout << __LINE__ << std::endl;
     Graph g = data.getGraph();
     int user_input;
     std::cout << "Please type a node ID to check it's connected component: ";
@@ -31,7 +35,7 @@ int main() {
     std::cout << "Now enter the destination: ";
     std::cin >> end;
     std::cout << "This is the shortest path for your starting and ending points: ";
-    std::pair<int, std::unordered_set<int>> dijkstra = Dijkstra(g, start, end);
+    std::pair<double, std::unordered_set<int>> dijkstra = Dijkstra(g, start, end);
     for (int it : dijkstra.second) {
         std::cout << it << " ";
 
