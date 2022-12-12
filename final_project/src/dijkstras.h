@@ -1,10 +1,21 @@
 #include <limits.h>
 #include <Graph.h>
 
-std::pair<double, std::unordered_set<int>> Dijkstra(Graph g, int source, int destination);
-int findNext(std::unordered_map<int, bool> visited, std::unordered_map<int, int> distance);
+#include <iomanip>
+#include <sstream>
 
-std::pair<int, std::unordered_set<int>> Dijkstra(Graph g, int source, int destination){
+std::pair<double, std::unordered_set<int>> Dijkstra(Graph g, int source, int destination);
+int findNext(std::unordered_map<int, bool> visited, std::unordered_map<int, double> distance);
+double toPre(double input, int precision);
+
+double toPre(double input, int precision) {
+    std::stringstream stream;
+    stream << std::fixed << std::setprecision(precision) << input;
+    std::string s = stream.str();
+    return std::stod(s);
+}
+
+std::pair<double, std::unordered_set<int>> Dijkstra(Graph g, int source, int destination){
     std::unordered_map<int, double> distance;
     std::unordered_map<int, int> previous;
     std::unordered_map<int, bool> visited;
@@ -48,13 +59,13 @@ std::pair<int, std::unordered_set<int>> Dijkstra(Graph g, int source, int destin
     return ret;
 }
 
-int findNext(std::unordered_map<int, bool> visited, std::unordered_map<int, int> distance){
+int findNext(std::unordered_map<int, bool> visited, std::unordered_map<int, double> distance){
     std::set<int> set;
     for (auto i : distance){
-        set.insert(i.second);
+        set.insert(i.first);
     }
     for (int i : set){
-        if (visited[i]==false){
+        if (visited[i] == false){
             return i;
         }
     }
