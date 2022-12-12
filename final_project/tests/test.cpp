@@ -184,6 +184,7 @@ TEST_CASE("test_dijkstras","[dijkstras, test_small]"){
     DataParsing test_small("/workspaces/cs225/CS225_Final_Project/final_project/test_small.txt", 10);
     Graph graph_small = test_small.getGraph();
     //test: distance
+     std::cout << __LINE__ << std::endl;
     vector<vector<double>> expected_distance = {
         {0.000,0.333,0.433,0.333,0.433,0.433,0.433,0.433,0.433,0.333},\
         {0.100,0.000,0.100,0.100,0.100,0.100,0.100,0.100,0.100,0.100},\
@@ -196,39 +197,46 @@ TEST_CASE("test_dijkstras","[dijkstras, test_small]"){
         {0.350,0.250,0.350,0.350,0.250,0.250,0.250,0.350,0.000,0.350},\
         {1.100,1.000,1.100,1.100,1.100,1.100,1.100,1.100,1.100,1.100}
     };
-
+ std::cout << __LINE__ << std::endl;
     for(unsigned i = 0; i < 1; i++){
         for (unsigned j = 0; j < 10; j++){
             REQUIRE(Dijkstra(graph_small, i, j).first == expected_distance[i][j]);
         }
     }
     //test: path
+     std::cout << __LINE__ << std::endl;
     unordered_set<int> path_01_small = Dijkstra(graph_small, 0, 1).second;
     REQUIRE(path_01_small.size() == 2);
     REQUIRE(path_01_small.find(0) != path_01_small.end());
     REQUIRE(path_01_small.find(1) != path_01_small.end());
     REQUIRE(path_01_small.find(2) == path_01_small.end());
-
+ std::cout << __LINE__ << std::endl;
     unordered_set<int> path_06_small = Dijkstra(graph_small, 0, 6).second;
+    std::cout << __LINE__ << std::endl;
     REQUIRE(path_06_small.size() == 3);
-    REQUIRE(path_06_small.find(0) != path_01_small.end());
-    REQUIRE(path_06_small.find(1) != path_01_small.end());
-    REQUIRE(path_06_small.find(6) != path_01_small.end());
-    REQUIRE(path_06_small.find(2) == path_01_small.end());
-
+    std::cout << __LINE__ << std::endl;
+    REQUIRE(path_06_small.find(0) != path_06_small.end());
+    std::cout << __LINE__ << std::endl;
+    REQUIRE(path_06_small.find(1) != path_06_small.end());
+    std::cout << __LINE__ << std::endl;
+    REQUIRE(path_06_small.find(6) != path_06_small.end());
+    std::cout << __LINE__ << std::endl;
+    REQUIRE(path_06_small.find(2) == path_06_small.end());
+ std::cout << __LINE__ << std::endl;
     unordered_set<int> path_30_small = Dijkstra(graph_small, 3, 0).second;
-    REQUIRE(path_06_small.size() == 4);
-    REQUIRE(path_06_small.find(0) != path_01_small.end());
-    REQUIRE(path_06_small.find(1) != path_01_small.end());
-    REQUIRE(path_06_small.find(6) == path_01_small.end());
-    REQUIRE(path_06_small.find(3) != path_01_small.end());
-    REQUIRE(path_06_small.find(5) != path_01_small.end());
+    REQUIRE(path_30_small.size() == 4);
+    REQUIRE(path_30_small.find(0) != path_30_small.end());
+    REQUIRE(path_30_small.find(1) != path_30_small.end());
+    REQUIRE(path_30_small.find(6) == path_30_small.end());
+    REQUIRE(path_30_small.find(3) != path_30_small.end());
+    REQUIRE(path_30_small.find(5) != path_30_small.end());
 }
 
 TEST_CASE("test_dijkstras","[dijkstras, test_extreme]"){
     DataParsing test_extreme("/workspaces/cs225/CS225_Final_Project/final_project/test_extreme.txt", 10);
     Graph graph_extreme = test_extreme.getGraph();
     //test: distance
+    std::cout << __LINE__ << std::endl;
     vector<vector<double>> expected_distance = {
         {0.000,0.333,0.333,0.333,0.433,0.433,0.433,0.433,0.433,0.433},\
         {0.100,0.000,0.100,0.100,0.100,0.100,0.100,0.100,0.100,0.100},\
@@ -241,34 +249,36 @@ TEST_CASE("test_dijkstras","[dijkstras, test_extreme]"){
         {0.100,0.100,0.100,0.100,0.100,0.100,0.100,0.100,0.100,0.100},\
         {1.000,1.333,1.333,1.333,1.433,1.433,1.433,1.433,1.433,0.000}
     };
-
+     std::cout << __LINE__ << std::endl;
     for(unsigned i = 0; i < 10; i++){
         for (unsigned j = 0; j < 10; j++){
+             std::cout << __LINE__ << std::endl;
             REQUIRE(Dijkstra(graph_extreme, i, j).first == expected_distance[i][j]);
         }
     }
     //test: path
+     std::cout << __LINE__ << std::endl;
     unordered_set<int> path_01_small = Dijkstra(graph_extreme, 0, 1).second;
     REQUIRE(path_01_small.size() == 2);
     REQUIRE(path_01_small.find(0) != path_01_small.end());
     REQUIRE(path_01_small.find(1) != path_01_small.end());
     REQUIRE(path_01_small.find(2) == path_01_small.end());
-
+    std::cout << __LINE__ << std::endl;
     unordered_set<int> path_06_small = Dijkstra(graph_extreme, 0, 6).second;
     REQUIRE(path_06_small.size() == 3);
-    REQUIRE(path_06_small.find(0) != path_01_small.end());
-    REQUIRE(path_06_small.find(1) != path_01_small.end());
-    REQUIRE(path_06_small.find(6) != path_01_small.end());
-    REQUIRE(path_06_small.find(2) == path_01_small.end());
-
+    REQUIRE(path_06_small.find(0) != path_06_small.end());
+    REQUIRE(path_06_small.find(1) != path_06_small.end());
+    REQUIRE(path_06_small.find(6) != path_06_small.end());
+    REQUIRE(path_06_small.find(2) == path_06_small.end());
+     std::cout << __LINE__ << std::endl;
     unordered_set<int> path_96_small = Dijkstra(graph_extreme, 9, 6).second;
     REQUIRE(path_96_small.size() == 4);
-    REQUIRE(path_96_small.find(0) != path_01_small.end());
-    REQUIRE(path_96_small.find(1) != path_01_small.end());
-    REQUIRE(path_96_small.find(6) != path_01_small.end());
-    REQUIRE(path_96_small.find(3) == path_01_small.end());
-    REQUIRE(path_96_small.find(5) == path_01_small.end());
-    REQUIRE(path_96_small.find(9) != path_01_small.end());
+    REQUIRE(path_96_small.find(0) != path_96_small.end());
+    REQUIRE(path_96_small.find(1) != path_96_small.end());
+    REQUIRE(path_96_small.find(6) != path_96_small.end());
+    REQUIRE(path_96_small.find(3) == path_96_small.end());
+    REQUIRE(path_96_small.find(5) == path_96_small.end());
+    REQUIRE(path_96_small.find(9) != path_96_small.end());
 }
 
 TEST_CASE("test_pagerank","[pagerank, test_small]"){
