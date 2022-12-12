@@ -22,7 +22,7 @@ std::pair<double, std::unordered_set<int>> Dijkstra(Graph g, int source, int des
     int count = 0;
     for (auto i : g.getTraversalPath(source)){
         count++;
-        distance[i] = (double) INT_MAX;
+        distance[i] = DBL_MAX;
         visited[i] = false;
     }
     //count = num of node connected to src
@@ -60,14 +60,16 @@ std::pair<double, std::unordered_set<int>> Dijkstra(Graph g, int source, int des
 }
 
 int findNext(std::unordered_map<int, bool> visited, std::unordered_map<int, double> distance){
+<<<<<<< HEAD
     std::set<double> set;
+=======
+    std::map<double, int> dist;
+>>>>>>> 487dd6d61f0adc62674e4fae1a0b556fe143b6d4
     for (auto i : distance){
-        set.insert(i.first);
+        dist[i.second] = i.first;
     }
-    for (int i : set){
-        if (visited[i] == false){
-            return i;
-        }
+    for (auto i : dist){
+        if (visited[i.second] == false) return i.second;
     }
     return -1;
 }

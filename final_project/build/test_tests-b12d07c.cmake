@@ -14,4 +14,6 @@ add_test( test_dijkstras /workspaces/cs225/CS225_Final_Project/final_project/bui
 set_tests_properties( test_dijkstras PROPERTIES WORKING_DIRECTORY /workspaces/cs225/CS225_Final_Project/final_project/build)
 add_test( test_pagerank /workspaces/cs225/CS225_Final_Project/final_project/build/test test_pagerank  )
 set_tests_properties( test_pagerank PROPERTIES WORKING_DIRECTORY /workspaces/cs225/CS225_Final_Project/final_project/build)
-set( test_TESTS test_extreme test_small test_graph_basic test_graph_basic test_graph_dfs test_dijkstras test_dijkstras test_pagerank)
+add_test( test_pagerank /workspaces/cs225/CS225_Final_Project/final_project/build/test test_pagerank  )
+set_tests_properties( test_pagerank PROPERTIES WORKING_DIRECTORY /workspaces/cs225/CS225_Final_Project/final_project/build)
+set( test_TESTS test_extreme test_small test_graph_basic test_graph_basic test_graph_dfs test_dijkstras test_dijkstras test_pagerank test_pagerank)
