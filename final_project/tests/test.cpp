@@ -173,8 +173,7 @@ TEST_CASE("test_graph_dfs","[graph_class, test_small]"){
         {7,1,0,3,5,4,2,9,8,6},\
         {8,1,0,3,5,4,2,9,6,7},\
         {9,1,0,3,5,4,2,8,6,7}
-        }
-    }
+    };
 
     for (unsigned i = 0; i < 10, i++){
         getTraversalPath(i);
@@ -196,7 +195,7 @@ TEST_CASE("test_graph_dfs","[graph_class, test_extreme]"){
         {6,1,0,2,3,4,5,7,8,9},\
         {8,0,1,2,3,4,5,6,7,9},\
         {9,0,1,2,3,4,5,6,7,8}
-    }
+    };
 
     for (unsigned i = 0; i < 10, i++){
         getTraversalPath(i);
@@ -208,5 +207,46 @@ TEST_CASE("test_graph_dfs","[graph_class, test_extreme]"){
 TEST_CASE("test_dijkstras","[dijkstras, test_small]"){
     DataParsing test_small("/workspaces/cs225/CS225_Final_Project/final_project/test_small.txt", 10);
     Graph graph_small = test_small.getGraph();
+    //test: distance
+    vector<vector<double>> expected_distance = {
+        {0.000,0.333,0.433,0.333,0.433,0.433,0.433,0.433,0.433,0.333},\
+        {0.100,0.000,0.100,0.100,0.100,0.100,0.100,0.100,0.100,0.100},\
+        {0.433,0.333,0.000,0.333,0.433,0.433,0.433,0.433,0.433,0.333},\
+        {0.633,0.533,0.633,0.000,0.533,0.333,0.533,0.633,0.333,0.533},\
+        {0.433,0.333,0.333,0.433,0.000,0.433,0.433,0.433,0.433,0.433},\
+        {0.300,0.200,0.300,0.300,0.200,0.000,0.200,0.300,0.300,0.200},\
+        {0.433,0.333,0.433,0.433,0.433,0.433,0.000,0.433,0.433,0.333},\
+        {0.350,0.250,0.350,0.350,0.250,0.250,0.350,0.000,0.350,0.250},\
+        {0.350,0.250,0.350,0.350,0.250,0.250,0.250,0.350,0.000,0.350},\
+        {1.100,1.000,1.100,1.100,1.100,1.100,1.100,1.100,1.100,1.100}
+    };
 
+    for(unsigned i = 0; i < 10; i++){
+        for (unsigned j = 0; j < 10; j++){
+            if(!Dijkstra(graph_small, i, j).empty()){
+                REQUIRE(Dijkstra(graph_small, i, j)->first == expected_distance[i][j]);
+            } 
+        }
+    }
+    //test: path
+    unordered_set<int> path_01_small = Dijkstra(graph_small, 0, 1)->second;
+    REQUIRE(path_01_small.size() == 2);
+    REQUIRE(path_01_small.find(0) != path_01_small.end());
+    REQUIRE(path_01_small.find(1) != path_01_small.end());
+    REQUIRE(path_01_small.find(2) == path_01_small.end());
+
+    unordered_set<int> path_06_small = Dijkstra(graph_small, 0, 6)->second;
+    REQUIRE(path_06_small.size() == 3);
+    REQUIRE(path_06_small.find(0) != path_01_small.end());
+    REQUIRE(path_06_small.find(1) != path_01_small.end());
+    REQUIRE(path_06_small.find(6) != path_01_small.end());
+    REQUIRE(path_06_small.find(2) == path_01_small.end());
+
+    unordered_set<int> path_30_small = Dijkstra(graph_small, 3, 0)->second;
+    REQUIRE(path_06_small.size() == 4);
+    REQUIRE(path_06_small.find(0) != path_01_small.end());
+    REQUIRE(path_06_small.find(1) != path_01_small.end());
+    REQUIRE(path_06_small.find(6) == path_01_small.end());
+    REQUIRE(path_06_small.find(3) != path_01_small.end());
+    REQUIRE(path_06_small.find(5) != path_01_small.end());
 }
