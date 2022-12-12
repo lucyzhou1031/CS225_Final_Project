@@ -108,7 +108,7 @@ void Graph::DFS(int start, int count) {
 }
 
 
-std::vector<int> findDFSorder(int start){
+std::vector<int> findDFSorder(){
     return order;
 }
 

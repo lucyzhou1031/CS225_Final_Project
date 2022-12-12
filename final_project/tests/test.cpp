@@ -159,6 +159,52 @@ TEST_CASE("test_graph_basic","[graph_class, test_extreme]"){
 }
 
 
+TEST_CASE("test_graph_dfs","[graph_class, test_small]"){
+    DataParsing test_small("/workspaces/cs225/CS225_Final_Project/final_project/test_small.txt", 10);
+    Graph graph_small = test_small.getGraph();
+    vector<vector<int>> expected_dfs = {
+        {0,1,2,3,5,4,8,6,9,7},\
+        {1,0,3,5,4,2,9,8,6,7},\
+        {2,1,0,3,5,4,8,6,9,7},\
+        {3,5,1,0,9,2,4,8,6,7},\
+        {4,1,0,3,5,6,9,8,2,7},\
+        {5,1,0,3,8,4,2,9,6,7},\
+        {6,1,0,3,5,4,2,9,8,7},\
+        {7,1,0,3,5,4,2,9,8,6},\
+        {8,1,0,3,5,4,2,9,6,7},\
+        {9,1,0,3,5,4,2,8,6,7}
+        }
+    }
+
+    for (unsigned i = 0; i < 10, i++){
+        getTraversalPath(i);
+        vector<int> dfs_order = findDFSorder();
+        REQUIRE(dfs_order == expected_dfs[i]);
+    }
+}
+
+TEST_CASE("test_graph_dfs","[graph_class, test_extreme]"){
+    DataParsing test_small("/workspaces/cs225/CS225_Final_Project/final_project/test_extreme.txt", 10);
+    Graph graph_extreme = test_extreme.getGraph();
+    vector<vector<int>> expected_dfs = {
+        {0,1,2,3,4,5,6,7,8,9},\
+        {1,0,2,3,4,5,6,7,8,9},\
+        {2},\
+        {3,0,1,2,4,5,6,7,8,9},\
+        {4,1,0,2,3,5,6,7,8,9},\
+        {5,1,0,2,3,4,6,7,8,9},\
+        {6,1,0,2,3,4,5,7,8,9},\
+        {8,0,1,2,3,4,5,6,7,9},\
+        {9,0,1,2,3,4,5,6,7,8}
+    }
+
+    for (unsigned i = 0; i < 10, i++){
+        getTraversalPath(i);
+        vector<int> dfs_order = findDFSorder();
+        REQUIRE(dfs_order == expected_dfs[i]);
+    }
+}
+
 TEST_CASE("test_dijkstras","[dijkstras, test_small]"){
     DataParsing test_small("/workspaces/cs225/CS225_Final_Project/final_project/test_small.txt", 10);
     Graph graph_small = test_small.getGraph();

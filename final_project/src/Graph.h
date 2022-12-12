@@ -92,7 +92,7 @@ class Graph {
         std::map<int, std::vector<std::pair<int, double>>> getGraph();
         //findAdjacency: return vector of adj node (directed)
         std::vector<int> findAdjacency(int node);
-        std::vector<int> findDFSorder(int start);
+        std::vector<int> findDFSorder();
         std::unordered_set<int> getTraversalPath(int start);
         double getEdgeWeight(int source, int destination);
             
