@@ -60,7 +60,7 @@ std::pair<double, std::unordered_set<int>> Dijkstra(Graph g, int source, int des
 }
 
 int findNext(std::unordered_map<int, bool> visited, std::unordered_map<int, double> distance){
-    std::set<int> set;
+    std::set<double> set;
     for (auto i : distance){
         set.insert(i.first);
     }
