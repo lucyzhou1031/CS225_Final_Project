@@ -116,21 +116,51 @@ TEST_CASE("test_small","[data_parsing, test_small_case]"){
 }
 
 
-TEST_CASE("test_graph_basic","[graph_class, test_all]"){
+TEST_CASE("test_graph_basic","[graph_class, test_small]"){
     DataParsing test_small("/workspaces/cs225/CS225_Final_Project/final_project/test_small.txt", 10);
     Graph graph_small = test_small.getGraph();
-    //TEST: findAdjacency
+    //test: findAdjacency
     vector<int> adj_nodeID_one = findAdjacency(1);
-    const vector<int> expected_adj_one = {0,4,5,6,7,8,9,2};
-    for (int i: expected_adj_one){
-        REQUIRE(adj_nodeID_one.find(i) != adj_nodeID_one.end());
-    }
-
+    REQUIRE(adj_nodeID_one.size() == 0);
     vector<int> adj_nodeID_two = findAdjacency(2);
-    const vector<int> expected_adj_two = {1,9,3,4};
+    const vector<int> expected_adj_two = {1,9,3};
+    REQUIRE(adj_nodeID_two.size() == 3);
     for (int i: expected_adj_two){
         REQUIRE(adj_nodeID_two.find(i) != adj_nodeID_two.end());
     }
-    //TEST: getEdgeWeight
-    
+    //test: getEdgeWeight
+    REQUIRE(getEdgeWeight(9,0) == -1.000);
+    REQUIRE(getEdgeWeight(2,2) == -1.000);
+    REQUIRE(getEdgeWeight(3,1) == -1.000);
+    REQUIRE(getEdgeWeight(3,5) == 0.333);
+    REQUIRE(getEdgeWeight(5.4) == 0.200);
+    REQUIRE(getEdgeWeight(1,6) == 0.100);
+}
+
+TEST_CASE("test_graph_basic","[graph_class, test_extreme]"){
+    DataParsing test_extreme("/workspaces/cs225/CS225_Final_Project/final_project/test_extreme.txt", 10);
+    Graph graph_extreme = test_extreme.getGraph();
+    //test: findAdjacency
+    vector<int> adj_nodeID_one = findAdjacency(1);
+    REQUIRE(adj_nodeID_one.size() == 0);
+    vector<int> adj_nodeID_two = findAdjacency(2);
+    const vector<int> expected_adj_two = {2};
+    REQUIRE(adj_nodeID_two.size() == 1);
+    for (int i: expected_adj_two){
+        REQUIRE(adj_nodeID_two.find(i) != adj_nodeID_two.end());
+    }
+    //test: getEdgeWeight
+    REQUIRE(getEdgeWeight(1,2) == 0.100);
+    REQUIRE(getEdgeWeight(6,1) == 0.500);
+    REQUIRE(getEdgeWeight(9,0) == 1.000);
+    REQUIRE(getEdgeWeight(9,2) == -1.000);
+    REQUIRE(getEdgeWeight(8.7) == 0.100);
+    REQUIRE(getEdgeWeight(4,2) == -1.000);
+}
+
+
+TEST_CASE("test_dijkstras","[dijkstras, test_small]"){
+    DataParsing test_small("/workspaces/cs225/CS225_Final_Project/final_project/test_small.txt", 10);
+    Graph graph_small = test_small.getGraph();
+
 }
