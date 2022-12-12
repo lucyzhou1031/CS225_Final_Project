@@ -273,12 +273,20 @@ TEST_CASE("test_dijkstras","[dijkstras, test_extreme]"){
 
 TEST_CASE("test_pagerank","[pagerank, test_small]"){
     DataParsing test_small("/workspaces/cs225/CS225_Final_Project/final_project/test_small.txt", 10);
-    PageRank rank_small(test_small);
-    std::vector<double> iteration = rank_small.power_iteration(0.000000000001, 1000);
-    
+    PageRank rank_small(test_small);    
     vector<int> topTen = rank_small.findTopTen();
     for(unsigned i = 0; i < topTen.size(); i++) std::cout << topTen[i] << " " << std::endl;
     vector<int> expected_output = {1,9,3,5,6,8,4,2,7,0};
+    REQUIRE(topTen == expected_output);
+    
+}
+
+TEST_CASE("test_pagerank","[pagerank, test_extreme]"){
+    DataParsing test_extreme("/workspaces/cs225/CS225_Final_Project/final_project/test_extreme.txt", 10);
+    PageRank rank_extreme(test_extreme);    
+    vector<int> topTen = rank_extreme.findTopTen();
+    for(unsigned i = 0; i < topTen.size(); i++) std::cout << topTen[i] << " " << std::endl;
+    vector<int> expected_output = {2, 1, 3, 0, 8, 4, 5, 6, 7, 9};
     REQUIRE(topTen == expected_output);
     
 }
