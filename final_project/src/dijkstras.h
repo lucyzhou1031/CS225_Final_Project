@@ -60,12 +60,14 @@ std::pair<double, std::unordered_set<int>> Dijkstra(Graph g, int source, int des
 }
 
 int findNext(std::unordered_map<int, bool> visited, std::unordered_map<int, double> distance){
-    std::map<double, int> dist;
+    std::map<double, std::vector<int>> dist;
     for (auto i : distance){
-        dist[i.second] = i.first;
+        dist[i.second].push_back(i.first);
     }
     for (auto i : dist){
-        if (visited[i.second] == false) return i.second;
+        for (auto j : i.second){
+            if (visited[j] == false) return j;
+        }
     }
     return -1;
 }
