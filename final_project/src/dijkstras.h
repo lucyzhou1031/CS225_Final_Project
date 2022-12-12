@@ -20,24 +20,18 @@ std::pair<double, std::unordered_set<int>> Dijkstra(Graph g, int source, int des
     std::unordered_map<int, int> previous;
     std::unordered_map<int, bool> visited;
     int count = 0;
-<<<<<<< HEAD
     bool connected = false;
-=======
     std::cout << __LINE__ << std::endl;
->>>>>>> bc3a17e1e7cde94580f28b1106b662d99bf59836
     for (auto i : g.getTraversalPath(source)){
         if (i == destination) connected = true;
         count++;
         distance[i] = (double)INT_MAX;
         visited[i] = false;
     }
-<<<<<<< HEAD
     if (!connected){
         return std::pair<double, std::unordered_set<int>> {toPre(-1.0, 3), std::unordered_set<int>{}};
     }
-=======
     std::cout << __LINE__ << std::endl;
->>>>>>> bc3a17e1e7cde94580f28b1106b662d99bf59836
     //count = num of node connected to src
     int curr = source;
     distance[curr] = toPre(0.0, 3);
