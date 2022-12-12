@@ -20,20 +20,29 @@ std::pair<double, std::unordered_set<int>> Dijkstra(Graph g, int source, int des
     std::unordered_map<int, int> previous;
     std::unordered_map<int, bool> visited;
     int count = 0;
+<<<<<<< HEAD
     bool connected = false;
+=======
+    std::cout << __LINE__ << std::endl;
+>>>>>>> bc3a17e1e7cde94580f28b1106b662d99bf59836
     for (auto i : g.getTraversalPath(source)){
         if (i == destination) connected = true;
         count++;
         distance[i] = (double)INT_MAX;
         visited[i] = false;
     }
+<<<<<<< HEAD
     if (!connected){
         return std::pair<double, std::unordered_set<int>> {toPre(-1.0, 3), std::unordered_set<int>{}};
     }
+=======
+    std::cout << __LINE__ << std::endl;
+>>>>>>> bc3a17e1e7cde94580f28b1106b662d99bf59836
     //count = num of node connected to src
     int curr = source;
     distance[curr] = toPre(0.0, 3);
     visited[curr] = true;
+    std::cout << __LINE__ << std::endl;
     for (auto i : g.findAdjacency(source)){
         //prevent new distance updated when src -> src
         if(i != source){
@@ -41,10 +50,13 @@ std::pair<double, std::unordered_set<int>> Dijkstra(Graph g, int source, int des
             previous[i] = source;
         }   
     }
+    std::cout << __LINE__ << std::endl;
     count--;
     for ( ; count > 0 ; count--){
+        std::cout << __LINE__ << std::endl;
         curr = findNext(visited, distance);
         visited[curr] = true;
+        std::cout << __LINE__ << std::endl;
         for (auto i : g.findAdjacency(curr)){
             double dist = toPre(g.getEdgeWeight(curr, i) + distance[curr], 3);
             if (dist < toPre(distance[i], 3)){
@@ -53,6 +65,7 @@ std::pair<double, std::unordered_set<int>> Dijkstra(Graph g, int source, int des
             }
         }
     }
+    std::cout << __LINE__ << std::endl;
     std::unordered_set<int> path;
     int x = destination;
     path.insert(x);
