@@ -4,7 +4,7 @@
 std::pair<double, std::unordered_set<int>> Dijkstra(Graph g, int source, int destination);
 int findNext(std::unordered_map<int, bool> visited, std::unordered_map<int, int> distance);
 
-std::pair<int, std::unordered_set<int>> Dijkstra(Graph g, int source, int destination){
+std::pair<double, std::unordered_set<int>> Dijkstra(Graph g, int source, int destination){
     std::unordered_map<int, double> distance;
     std::unordered_map<int, int> previous;
     std::unordered_map<int, bool> visited;
@@ -48,8 +48,8 @@ std::pair<int, std::unordered_set<int>> Dijkstra(Graph g, int source, int destin
     return ret;
 }
 
-int findNext(std::unordered_map<int, bool> visited, std::unordered_map<int, int> distance){
-    std::set<int> set;
+int findNext(std::unordered_map<int, bool> visited, std::unordered_map<int, double> distance){
+    std::set<double> set;
     for (auto i : distance){
         set.insert(i.second);
     }
