@@ -80,36 +80,35 @@ void Graph::addVertex(int s) {
         graph[s] = {};
     }
 }
-void Graph::addEdge(int s1, int s2, int weight) {
+void Graph::addEdge(int s1, int s2, double weight) {
     if (graph.find(s1) != graph.end() && graph.find(s2) != graph.end()) {
-        graph[s1].push_back(std::make_pair(s2, weight));
+        std::map<int, double> internal = graph.at(s1);
+        internal.insert(std::pair<int, double>(s2, weight));
+        graph[s1] = internal;
     } else {
         std::cout << "Wrong node ID" << std::endl;
     }
 }
 
-std::map<int, std::vector<std::pair<int, double>>> Graph::getGraph() {
+std::map<int, std::map<int, double>> Graph::getGraph() {
     return graph;
 }
 
-void Graph::DFS(int start, int count) {
-    if(count == 0) {
-        visited.clear();
-        order.clear();
-    }
+void Graph::DFS(int start) {
     order.push_back(start);
     visited.insert(start);
     for (auto adj : graph.at(start)) {
         if (visited.find(adj.first) == visited.end()) {
-            count++;
-            DFS(adj.first, count);
+            DFS(adj.first);
         }
     }
 }
 
 
-std::vector<int> findDFSorder(){
-    return order;
+std::vector<int> Graph::findDFSorder(){
+    std::vector<int> or_re = order;
+    order.clear();
+    return or_re;
 }
 
 std::vector<int> Graph::findAdjacency(int node) {
@@ -130,6 +129,9 @@ double Graph::getEdgeWeight(int source, int destination) {
 }
 
 std::unordered_set<int> Graph::getTraversalPath(int start) {
-    DFS(start, 0);
-    return visited;
+    DFS(start);
+    std::unordered_set<int> to_return = visited;
+    visited.clear();
+    return to_return;
 }
+

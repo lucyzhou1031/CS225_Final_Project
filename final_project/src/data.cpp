@@ -90,12 +90,14 @@ std::map<int, unsigned> DataParsing::getMap() {
 }
 
 Graph DataParsing::getGraph() {
+
     for (auto it = mapping_idx.begin(); it != mapping_idx.end(); it++) {
         g.addVertex(it -> first);
     }
     
     for (unsigned i = 0; i < transit_matrix.size(); i++) {
         for (unsigned j = 0; j < transit_matrix.at(i).size(); j++) {
+            if (transit_matrix.at(i).at(j) == 0.000) continue;
             int fromID = 0;
             int toID = 0;
             int count = 0;
@@ -104,15 +106,17 @@ Graph DataParsing::getGraph() {
                     toID = it -> first;
                     count++;
                 }
-                if (it -> first == (int)j) {
+                if (it -> second == j) {
                     fromID = it -> first;
                     count++;
                 }
                 if (count == 2) {
+                    g.addEdge(fromID, toID, transit_matrix.at(i).at(j));
+                    //std::cout << fromID << " " << toID << " " << transit_matrix.at(i).at(j) << std::endl;
                     break;
                 }
             }
-            g.addEdge(fromID, toID, transit_matrix.at(i).at(j));
+            
         }
     }
     return g;

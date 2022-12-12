@@ -81,15 +81,15 @@
 class Graph {
     
     private:
-        std::map<int, std::vector<std::pair<int, double>>> graph;
+        std::map<int, std::map<int, double>> graph;
         std::unordered_set<int> visited;
         std::vector<int> order;
     public:
         Graph() = default;
         void addVertex(int s);
-        void addEdge(int s1, int s2, int weight);
-        void DFS(int start, int count);
-        std::map<int, std::vector<std::pair<int, double>>> getGraph();
+        void addEdge(int s1, int s2, double weight);
+        void DFS(int start);
+        std::map<int, std::map<int, double>> getGraph();
         //findAdjacency: return vector of adj node (directed)
         std::vector<int> findAdjacency(int node);
         std::vector<int> findDFSorder();
