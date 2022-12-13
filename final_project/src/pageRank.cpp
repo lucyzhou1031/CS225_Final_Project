@@ -2,11 +2,21 @@
 #include <numeric>
 #include <cmath>
 
+/**
+ * @brief Construct a new Page Rank:: Page Rank object
+ * 
+ * @param data a DataParsing class input
+ */
 PageRank::PageRank(DataParsing data) {
     A_ = data.getTransitMatrix();
     mapping = data.getMap();
 }
 
+/**
+ * @brief find the top ten websites as vector (ordered)
+ * 
+ * @return std::vector<int> 
+ */
 std::vector<int> PageRank::findTopTen() {
     x_ = power_iteration(0.000000000001, 1000);
     int size = 10;
@@ -40,6 +50,13 @@ std::vector<int> PageRank::findTopTen() {
     return top_ten;
 }
 
+/**
+ * @brief do a multiplication of two matrixes
+ * 
+ * @param A matrix to be multiplied
+ * @param x multiplier matrix
+ * @return std::vector<double> 
+ */
 std::vector<double> PageRank::multiply(std::vector<std::vector<double>> A, std::vector<double> x) {
     std::vector<double> to_return;
     for (unsigned i = 0; i < A.size(); i++) {
@@ -51,6 +68,14 @@ std::vector<double> PageRank::multiply(std::vector<std::vector<double>> A, std::
     }
     return to_return;
 }
+
+/**
+ * @brief proceed iteration given maximun iteration and tolerance
+ * 
+ * @param tol the tolerance of iteration
+ * @param max_iter the maximun num of designed iteration
+ * @return std::vector<double> 
+ */
 
 std::vector<double> PageRank::power_iteration(double tol, int max_iter) {
     std::vector<double> x0(A_.size(), 0);
@@ -82,6 +107,13 @@ std::vector<double> PageRank::power_iteration(double tol, int max_iter) {
 
 }
 
+/**
+ * @brief noralize the matrix with desired times
+ * 
+ * @param a input matrix
+ * @param nth desired time of normalization
+ * @return double 
+ */
 double PageRank::norm(std::vector<double> a, int nth) {
     if (a.empty()) {
         return -1;
@@ -98,7 +130,6 @@ double PageRank::norm(std::vector<double> a, int nth) {
         for (unsigned i = 0; i < a.size(); i++) {
             diff.push_back(a.at(i) * a.at(i));
         }
-        // double norm = std::accumulate(diff.begin(), diff.end(), 0);
         double norm = 0;
         for (unsigned i = 0; i < diff.size(); i++) {
             norm += diff.at(i);

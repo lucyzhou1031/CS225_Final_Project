@@ -25,9 +25,9 @@ DataParsing::DataParsing(std::string filename, int height) {
     unsigned count = 0;
     //count the latest col/row num
     for (int i = 0; i < size; i++) {
-        // if(!isdigit(lines.at(i).at(0))) {
-        //     continue;
-        // }
+        if(!isdigit(lines.at(i).at(0))) {
+            continue;
+        }
         lines.at(i) = Trim(lines.at(i));
         std::vector<std::string> each_line;
         int j = SplitString(lines.at(i), ' ', each_line);
@@ -155,7 +155,6 @@ Graph DataParsing::getGraph() {
                 }
                 if (count == 2) {
                     g.addEdge(fromID, toID, transit_matrix.at(i).at(j));
-                    //std::cout << fromID << " " << toID << " " << transit_matrix.at(i).at(j) << std::endl;
                     break;
                 }
             }
