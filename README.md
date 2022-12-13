@@ -4,13 +4,21 @@
 
 This is a final project repo for UIUC CS225 fall 2022. In this project, we aim to use page rank analysis, graph implementation, and shortest path algorithm to find out which website has greater importance than others. The data set we're using is [Web Graph from the Google programming contest, 2002](http://snap.stanford.edu/data/web-Google.html).
 
+## Presentation
+
+- [Video]()
+
+- [Written Report](https://github.com/lucyzhou1031/CS225_Final_Project/blob/main/result.md)
+
 ## Github File Structure
 
-- All major files are located at root directory at [`final_project`](https://github.com/lucyzhou1031/CS225_Final_Project/tree/main/final_project).
+- All major files are located at root directory at [`/final_project`](https://github.com/lucyzhou1031/CS225_Final_Project/tree/main/final_project).
 
-- `main.cpp` at [/entry](https://github.com/lucyzhou1031/CS225_Final_Project/tree/main/final_project/entry).
+    - data located in file `web-google.txt` in [`/final_project`]
 
-- `test.cpp` at [/tests](https://github.com/lucyzhou1031/CS225_Final_Project/tree/main/final_project/tests).
+- `main.cpp` at [`/entry`](https://github.com/lucyzhou1031/CS225_Final_Project/tree/main/final_project/entry).
+
+- `test.cpp` at [`/tests`](https://github.com/lucyzhou1031/CS225_Final_Project/tree/main/final_project/tests).
 
 ## Code Execution
 
