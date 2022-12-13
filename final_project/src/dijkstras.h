@@ -61,13 +61,15 @@ std::pair<double, std::vector<int>> Dijkstra(Graph g, int source, int destinatio
     std::vector<int> path_ordered;
     int x = destination;
     path.insert(x);
+    path_ordered.push_back(x);
     while (x != source){
         x = previous[x];
         path.insert(path.begin(), x);
-        path_ordered.push_back(x);
+        path_ordered.insert(path_ordered.begin(), x);
     }
     // std::pair<double, std::unordered_set<int>> ret = {toPre(distance[destination], 3), path};
     std::pair<double, std::vector<int>> ret = {toPre(distance[destination], 3), path_ordered};
+    
     return ret;
     
 }
