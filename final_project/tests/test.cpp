@@ -203,23 +203,11 @@ TEST_CASE("test_dijkstras","[dijkstras, test_small]"){
     }
     //test: path
     std::vector<int> path_01_small = Dijkstra(graph_small, 0, 1).second;
-    REQUIRE(path_01_small.size() == 2);
-    // REQUIRE(path_01_small.find(0) != path_01_small.end());
-    // REQUIRE(path_01_small.find(1) != path_01_small.end());
-    // REQUIRE(path_01_small.find(2) == path_01_small.end());
+    REQUIRE(path_01_small.size() == {0,1});
     std::vector<int> path_06_small = Dijkstra(graph_small, 0, 6).second;
-    REQUIRE(path_06_small.size() == 3);
-    // REQUIRE(path_06_small.find(0) != path_06_small.end());
-    // REQUIRE(path_06_small.find(1) != path_06_small.end());
-    // REQUIRE(path_06_small.find(6) != path_06_small.end());
-    // REQUIRE(path_06_small.find(2) == path_06_small.end());
+    REQUIRE(path_06_small.size() == {0,1,6});
     std::vector<int> path_30_small = Dijkstra(graph_small, 3, 0).second;
-    REQUIRE(path_30_small.size() == 4);
-    // REQUIRE(path_30_small.find(0) != path_30_small.end());
-    // REQUIRE(path_30_small.find(1) != path_30_small.end());
-    // REQUIRE(path_30_small.find(6) == path_30_small.end());
-    // REQUIRE(path_30_small.find(3) != path_30_small.end());
-    // REQUIRE(path_30_small.find(5) != path_30_small.end());
+    REQUIRE(path_30_small.size() == {3,5,1,0});
 }
 
 TEST_CASE("test_dijkstras","[dijkstras, test_extreme]"){
@@ -241,29 +229,15 @@ TEST_CASE("test_dijkstras","[dijkstras, test_extreme]"){
     for(unsigned i = 0; i < 10; i++){
         for (unsigned j = 0; j < 10; j++){
              REQUIRE(Dijkstra(graph_extreme, i, j).first == expected_distance[i][j]);
-                //std::cout << i << " " << j << " " << __LINE__ << std::endl;
         }
     }
     //test: path
     std::vector<int> path_01_small = Dijkstra(graph_extreme, 0, 1).second;
-    REQUIRE(path_01_small.size() == 2);
-    // REQUIRE(path_01_small.find(0) != path_01_small.end());
-    // REQUIRE(path_01_small.find(1) != path_01_small.end());
-    // REQUIRE(path_01_small.find(2) == path_01_small.end());
+    REQUIRE(path_01_small.size() == {0,1});
     std::vector<int> path_06_small = Dijkstra(graph_extreme, 0, 6).second;
-    REQUIRE(path_06_small.size() == 3);
-    // REQUIRE(path_06_small.find(0) != path_06_small.end());
-    // REQUIRE(path_06_small.find(1) != path_06_small.end());
-    // REQUIRE(path_06_small.find(6) != path_06_small.end());
-    // REQUIRE(path_06_small.find(2) == path_06_small.end());
+    REQUIRE(path_06_small.size() == {0,1,6});
     std::vector<int> path_96_small = Dijkstra(graph_extreme, 9, 6).second;
-    REQUIRE(path_96_small.size() == 4);
-    // REQUIRE(path_96_small.find(0) != path_96_small.end());
-    // REQUIRE(path_96_small.find(1) != path_96_small.end());
-    // REQUIRE(path_96_small.find(6) != path_96_small.end());
-    // REQUIRE(path_96_small.find(3) == path_96_small.end());
-    // REQUIRE(path_96_small.find(5) == path_96_small.end());
-    // REQUIRE(path_96_small.find(9) != path_96_small.end());
+    REQUIRE(path_96_small.size() == {9,0,1,6});
 }
 
 TEST_CASE("test_pagerank","[pagerank, test_small]"){
