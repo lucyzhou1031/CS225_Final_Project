@@ -3,6 +3,9 @@
 Team member: Xinyi Ye, Yixuan Zhou, Xiaoqi Guo
 
 ### Discussion of algorithms
+
+The biggest challenge that we have met in our project is that our dataset contains 875713 nodes, and we are using DFS algorithm that requires large memories. Therefore, in order to see our result, we used a subset of a few thousands lines of data.
+
 There are four major components in our final project: data parsing, graph class, Dijkstra algorithm and PageRank function. 
 
 We build a class for data parsing and transform all valid data in the .txt file into matrices. We used the utils from MP Schedule as tools to read the file. We make each line of the data set into a 2D vector. This vector will contain all valid data. There will be two columns, and each contain a node ID, meaning that there is a hyperlink of the website represented by the second node ID in the website represented by the first node ID: there is a jump from the first node ID to the second one. Therefore, this will be a directed graph. This will be first result in an adjacency matrix. By dividing each entry by the sum of the column, we will get a transit matrix which is used mainly for the page rank algorithm and construction of graph. We will also get a map that map each node ID to a index of the matrix, meaning that that index represents the connection of that node ID. We have getters for the matrices. There is also a getGraph() function in data parsing class that turn the transit matrix into graph data struture, which will build a directed graph with weighted edges. This graph will be mainly used for our Dijkstra's algorithm to find the shortest path and our DFS algorithm, which is written inside of the graph class, for the traversal. In out testcase, we build a normal valid testcase with 10 nodes, and an extreme testcase with multiple possible invalid data to test our algorithm. We compare the output of algorithm with expected output to check the correctness of matrixes.
