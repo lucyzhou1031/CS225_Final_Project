@@ -14,7 +14,7 @@ This is a final project repo for UIUC CS225 fall 2022. In this project, we aim t
 
 - All major files are located at root directory at [`/final_project`](https://github.com/lucyzhou1031/CS225_Final_Project/tree/main/final_project).
 
-    - data located in file `web-google.txt` in [`/final_project`]
+    - data located in file `web-google.txt` in [`/final_project`](https://github.com/lucyzhou1031/CS225_Final_Project/tree/main/final_project).
 
 - `main.cpp` at [`/entry`](https://github.com/lucyzhou1031/CS225_Final_Project/tree/main/final_project/entry).
 
