@@ -78,10 +78,10 @@ std::vector<int> Graph::findAdjacency(int node) {
 }
 
 /**
- * @brief 
+ * @brief return the weight of edge between 2 adjacent vertices
  * 
- * @param source 
- * @param destination 
+ * @param source the nodeID of source vertex
+ * @param destination the nodeID of destination vertex
  * @return double 
  */
 double Graph::getEdgeWeight(int source, int destination) {
@@ -93,6 +93,12 @@ double Graph::getEdgeWeight(int source, int destination) {
     return -1;
 }
 
+/**
+ * @brief reuturn the vertex traversed as an unordered set
+ * 
+ * @param start the nodeID of starting node
+ * @return std::unordered_set<int> 
+ */
 std::unordered_set<int> Graph::getTraversalPath(int start) {
     DFS(start);
     std::unordered_set<int> to_return = visited;
