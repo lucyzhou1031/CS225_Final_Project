@@ -81,13 +81,19 @@
 class Graph {
     
     private:
+        //the whole graph
         std::map<int, std::map<int, double>> graph;
+        //path of DFS traversal
         std::unordered_set<int> visited;
+        //path of DFS traversal that is easier for the test cases
         std::vector<int> order;
     public:
+        //default constructor
         Graph() = default;
+        //To creat a graph
         void addVertex(int s);
         void addEdge(int s1, int s2, double weight);
+        //Traversal
         void DFS(int start);
         std::map<int, std::map<int, double>> getGraph();
         //findAdjacency: return vector of adj node (directed)

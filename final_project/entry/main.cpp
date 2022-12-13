@@ -35,7 +35,8 @@ int main() {
     std::cout << "Now enter the destination: ";
     std::cin >> end;
     std::cout << "This is the shortest path for your starting and ending points: ";
-    std::pair<double, std::unordered_set<int>> dijkstra = Dijkstra(g, start, end);
+    // std::pair<double, std::unordered_set<int>> dijkstra = Dijkstra(g, start, end);
+    std::pair<double, std::vector<int>> dijkstra = Dijkstra(g, start, end);
     for (int it : dijkstra.second) {
         std::cout << it << " ";
 

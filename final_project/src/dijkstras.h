@@ -4,7 +4,7 @@
 #include <iomanip>
 #include <sstream>
 
-std::pair<double, std::unordered_set<int>> Dijkstra(Graph g, int source, int destination);
+std::pair<double, std::vector<int>> Dijkstra(Graph g, int source, int destination);
 int findNext(std::unordered_map<int, bool> visited, std::unordered_map<int, double> distance);
 double toPre(double input, int precision);
 
@@ -15,7 +15,7 @@ double toPre(double input, int precision) {
     return std::stod(s);
 }
 
-std::pair<double, std::unordered_set<int>> Dijkstra(Graph g, int source, int destination){
+std::pair<double, std::vector<int>> Dijkstra(Graph g, int source, int destination){
     std::unordered_map<int, double> distance;
     std::unordered_map<int, int> previous;
     std::unordered_map<int, bool> visited;
@@ -28,7 +28,8 @@ std::pair<double, std::unordered_set<int>> Dijkstra(Graph g, int source, int des
         visited[i] = false;
     }
     if (!connected){
-        return std::pair<double, std::unordered_set<int>> {distance[source], std::unordered_set<int>{}};
+        // return std::pair<double, std::unordered_set<int>> {distance[source], std::unordered_set<int>{}};
+        return std::pair<double, std::vector<int>> {distance[source], std::vector<int>{}};
     }
     //count = num of node connected to src
     int curr = source;
@@ -57,13 +58,16 @@ std::pair<double, std::unordered_set<int>> Dijkstra(Graph g, int source, int des
         }
     }
     std::unordered_set<int> path;
+    std::vector<int> path_ordered;
     int x = destination;
     path.insert(x);
     while (x != source){
         x = previous[x];
         path.insert(path.begin(), x);
+        path_ordered.push_back(x);
     }
-    std::pair<double, std::unordered_set<int>> ret = {toPre(distance[destination], 3), path};
+    // std::pair<double, std::unordered_set<int>> ret = {toPre(distance[destination], 3), path};
+    std::pair<double, std::vector<int>> ret = {toPre(distance[destination], 3), path_ordered};
     return ret;
     
 }
