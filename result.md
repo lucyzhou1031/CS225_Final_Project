@@ -1,1 +1,5 @@
 
+There are three components in our final project: data parsing, graph class, Dijkstra algorithm and PageRank function. 
+We build a class for data parsing and transform all valid data in the .txt file into matrix. There is also a getGraph(), which will build a directed graph with weighted edges. In out testcase, we build a general testcase with 10 nodes, and an extreme testcase with multiple possible invalid data to test our algorithm. We compare the output of algorithm with expected output to check the correctness of matrixes.
+In our graph class, we build a DFS function and some getter for Dijkstra function to use. We check the order of DFS traversal of all nodes in both tests (small test and extreme test) by compare the output traversal vectors.
+Our Dijkstra algorithm will find the shortest path, given the fromID and toID, and store the nodes in vectors with order. We test all output distances between 10*10 nodes in both tests. The traversal order of Dijkstra function is also verified by vectors comparison.
