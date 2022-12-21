@@ -20,6 +20,15 @@
 
 using namespace std;         
 
+/**
+ * @brief output a matrix as a .txt file
+ * 
+ * @tparam T 
+ * @param matrix input matrix 
+ * @param test the filename of the testcase
+ * @param type the functions to be test
+ * @return string 
+ */
 template <typename T>
 string print_matrix(vector<vector<T>> matrix, string test, string type){
     string filename = "test_" + test + "_" + type + "_output.txt";
@@ -42,6 +51,13 @@ string print_matrix(vector<vector<T>> matrix, string test, string type){
     return filename;
 }
 
+/**
+ * @brief test data parsing algorithm with test_extreme
+ * their are multiple invalid data in the test_extreme file
+ * 
+ * testcase: test_small
+ * function tested: DataParsing constructor, getAdjacencyMatrix(), getTransitMatrix()
+ */
 TEST_CASE("test_extreme","[data_parsing, test_extreme_case]"){
     DataParsing test_extreme("/workspaces/cs225/CS225_Final_Project/final_project/test_extreme.txt", 10);
     //output adj/tran matrix into file
@@ -79,6 +95,13 @@ TEST_CASE("test_extreme","[data_parsing, test_extreme_case]"){
     REQUIRE(testTran == expected_trans);
 }
 
+/**
+ * @brief test data parsing class with test_small
+ * test_small is a normal testcase with duplicated data line
+ * 
+ * testcase: test_small
+ * function tested: DataParsing constructor, getAdjacencyMatrix(), getTransitMatrix()
+ */
 TEST_CASE("test_small","[data_parsing, test_small_case]"){
     DataParsing test_small("/workspaces/cs225/CS225_Final_Project/final_project/test_small.txt", 10);
     vector<vector<int>> testAdj = test_small.getAdjacencyMatrix();
@@ -116,7 +139,12 @@ TEST_CASE("test_small","[data_parsing, test_small_case]"){
     REQUIRE(testTran == expected_tran);
 }
 
-
+/**
+ * @brief test function of graph class expect DFS traversal
+ * 
+ * testcase: test_small
+ * function tested: Graph constructor, getGraph(), findAdjacency(int node), getEdgeWeight(int source, int destination)
+ */
 TEST_CASE("test_graph_basic","[graph_class, test_small]"){
     DataParsing test_small("/workspaces/cs225/CS225_Final_Project/final_project/test_small.txt", 10);
     Graph graph_small = test_small.getGraph();
@@ -143,6 +171,12 @@ TEST_CASE("test_graph_basic","[graph_class, test_small]"){
    
 }
 
+/**
+ * @brief test function of graph class expect DFS traversal
+ * 
+ * testcase: test_extreme
+ * function tested: Graph constructor, getGraph(), findAdjacency(int node), getEdgeWeight(int source, int destination)
+ */
 TEST_CASE("test_graph_basic","[graph_class, test_extreme]"){
     DataParsing test_extreme("/workspaces/cs225/CS225_Final_Project/final_project/test_extreme.txt", 10);
     Graph graph_extreme = test_extreme.getGraph();
@@ -157,6 +191,12 @@ TEST_CASE("test_graph_basic","[graph_class, test_extreme]"){
     }
 }
 
+/**
+ * @brief test DFS travesal (result and traversal order)
+ * 
+ * testcase: test_extreme
+ * function tested: DFS(int start)
+ */
 TEST_CASE("test_graph_dfs","[graph_class, test_extreme]"){
     DataParsing test_extreme("/workspaces/cs225/CS225_Final_Project/final_project/test_extreme.txt", 10);
     Graph graph_extreme = test_extreme.getGraph();
@@ -180,6 +220,14 @@ TEST_CASE("test_graph_dfs","[graph_class, test_extreme]"){
     }
 }
 
+/**
+ * @brief test Dijkstra algorithm with test_small
+ * the distance of shorted path between nodes are tested as matrix
+ * the traversal order of Dijkstra algorithm is tested
+ * 
+ * testcase: test_small
+ * function tested: Dijkstra(Graph g, int source, int destination)
+ */
 TEST_CASE("test_dijkstras","[dijkstras, test_small]"){
     DataParsing test_small("/workspaces/cs225/CS225_Final_Project/final_project/test_small.txt", 10);
     Graph graph_small = test_small.getGraph();
@@ -210,6 +258,14 @@ TEST_CASE("test_dijkstras","[dijkstras, test_small]"){
     REQUIRE(path_30_small == {3,5,1,0});
 }
 
+/**
+ * @brief test Dijkstra algorithm with test_extreme
+ * the distance of shorted path between nodes are tested as matrix
+ * the traversal order of Dijkstra algorithm is tested
+ * 
+ * testcase: test_extreme
+ * function tested: Dijkstra(Graph g, int source, int destination)
+ */
 TEST_CASE("test_dijkstras","[dijkstras, test_extreme]"){
     DataParsing test_extreme("/workspaces/cs225/CS225_Final_Project/final_project/test_extreme.txt", 10);
     Graph graph_extreme = test_extreme.getGraph();
@@ -240,6 +296,12 @@ TEST_CASE("test_dijkstras","[dijkstras, test_extreme]"){
     REQUIRE(path_96_small == {9,0,1,6});
 }
 
+/**
+ * @brief test the output of pagerank
+ * 
+ * testcase: test_small
+ * funcion tested: RageRank constructor, findTopTen()
+ */
 TEST_CASE("test_pagerank","[pagerank, test_small]"){
     DataParsing test_small("/workspaces/cs225/CS225_Final_Project/final_project/test_small.txt", 10);
     PageRank rank_small(test_small);    
@@ -250,6 +312,12 @@ TEST_CASE("test_pagerank","[pagerank, test_small]"){
     
 }
 
+/**
+ * @brief test the output of pagerank
+ * 
+ * testcase: test_extreme
+ * funcion tested: RageRank constructor, findTopTen()
+ */
 TEST_CASE("test_pagerank","[pagerank, test_extreme]"){
     DataParsing test_extreme("/workspaces/cs225/CS225_Final_Project/final_project/test_extreme.txt", 10);
     PageRank rank_extreme(test_extreme);    

@@ -3,8 +3,6 @@
 class PageRank {
     public:
         PageRank(DataParsing data);
-        
-        
         std::vector<int> findTopTen();
         
         

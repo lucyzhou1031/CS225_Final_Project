@@ -3,9 +3,33 @@
 
 #include <iomanip>
 #include <sstream>
-
+/**
+ * @brief run Dijkstra algorithm given the nodeID of initial node and destination node
+ * return a pair of distance and traversed nodes (as vector)
+ * 
+ * @param g the graph of pagerank
+ * @param source the nodeID of source node
+ * @param destination the nodeID of destination node
+ * @return std::pair<double, std::vector<int>> 
+ */
 std::pair<double, std::vector<int>> Dijkstra(Graph g, int source, int destination);
+
+/**
+ * @brief return the nodeID of next unvisited adjacent node
+ * 
+ * @param visited the unordered map that map nodeID to its state (visited/unvisited)
+ * @param distance the unordered map that map destinaion node to its shorted distance between source node
+ * @return int 
+ */
 int findNext(std::unordered_map<int, bool> visited, std::unordered_map<int, double> distance);
+
+/**
+ * @brief percise a double to desired sig fig
+ * 
+ * @param input input double value
+ * @param precision desired sig fig
+ * @return double 
+ */
 double toPre(double input, int precision);
 
 double toPre(double input, int precision) {

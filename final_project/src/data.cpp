@@ -5,6 +5,15 @@
 #include <iomanip>
 #include <sstream>
 
+/**
+ * Transform data into adjacency matrix and transit matrix
+ * Data Parsing will filter out invalid data
+ * mapping_idx will store the nodeID and its corresposing index in matrixes as map
+ * 
+ * @param filename the path of input dataset (.txt)
+ * @param height the height of intended output graph
+ * It will setup two matrixes for Graph class, and store a map that mapping nodeID to matrix index 
+*/
 DataParsing::DataParsing(std::string filename, int height) {
     height_ = height;
     std::string file = file_to_string(filename);
@@ -16,9 +25,9 @@ DataParsing::DataParsing(std::string filename, int height) {
     unsigned count = 0;
     //count the latest col/row num
     for (int i = 0; i < size; i++) {
-        // if(!isdigit(lines.at(i).at(0))) {
-        //     continue;
-        // }
+        if(!isdigit(lines.at(i).at(0))) {
+            continue;
+        }
         lines.at(i) = Trim(lines.at(i));
         std::vector<std::string> each_line;
         int j = SplitString(lines.at(i), ' ', each_line);
@@ -78,23 +87,51 @@ DataParsing::DataParsing(std::string filename, int height) {
     }
 }
 
+/**
+ * @brief precise double into desired significant figures
+ * 
+ * @param input the double to be precised
+ * @param precision the desired demension of sig fig
+ * @return double 
+ */
 double DataParsing::toPrecise(double input, int precision) {
     std::stringstream stream;
     stream << std::fixed << std::setprecision(precision) << input;
     std::string s = stream.str();
     return std::stod(s);
 }
+
+/**
+ * @brief return adjacenct matrix
+ * 
+ * @return std::vector<std::vector<int>> 
+ */
 std::vector<std::vector<int>> DataParsing::getAdjacencyMatrix() {
     return adjacency_matrix;
 }
+
+/**
+ * @brief return transit matrix
+ * 
+ * @return std::vector<std::vector<double>> 
+ */
 std::vector<std::vector<double>> DataParsing::getTransitMatrix() {
     return transit_matrix;
 }
 
+/**
+ * @brief return the map of nodeID and matrix index
+ * 
+ * @return std::map<int, unsigned> 
+ */
 std::map<int, unsigned> DataParsing::getMap() {
     return mapping_idx;
 }
-
+/**
+ * @brief use transit matrix to build a directed graph of pagerank
+ * 
+ * @return Graph 
+ */
 Graph DataParsing::getGraph() {
 
     for (auto it = mapping_idx.begin(); it != mapping_idx.end(); it++) {
@@ -118,7 +155,6 @@ Graph DataParsing::getGraph() {
                 }
                 if (count == 2) {
                     g.addEdge(fromID, toID, transit_matrix.at(i).at(j));
-                    //std::cout << fromID << " " << toID << " " << transit_matrix.at(i).at(j) << std::endl;
                     break;
                 }
             }
