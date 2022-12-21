@@ -1,7 +1,3 @@
-# Test extreme cases of input .txt file
-# unpaired node, invalid line
-# Nodes: 8 Edges: 9
-# FromNodeId	ToNodeId
 0   1
 0   2
 0   3

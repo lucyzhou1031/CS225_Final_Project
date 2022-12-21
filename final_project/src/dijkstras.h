@@ -28,15 +28,12 @@ std::pair<double, std::vector<int>> Dijkstra(Graph g, int source, int destinatio
         visited[i] = false;
     }
     if (!connected){
-        // return std::pair<double, std::unordered_set<int>> {distance[source], std::unordered_set<int>{}};
         return std::pair<double, std::vector<int>> {distance[source], std::vector<int>{}};
     }
-    //count = num of node connected to src
     int curr = source;
     distance[curr] = toPre(0.0, 3);
     visited[curr] = true;
     for (auto i : g.findAdjacency(source)){
-        //prevent new distance updated when src -> src
         if(i != source){
             distance[i] = toPre(g.getEdgeWeight(source, i), 3);
             previous[i] = source;
@@ -67,7 +64,6 @@ std::pair<double, std::vector<int>> Dijkstra(Graph g, int source, int destinatio
         path.insert(path.begin(), x);
         path_ordered.insert(path_ordered.begin(), x);
     }
-    // std::pair<double, std::unordered_set<int>> ret = {toPre(distance[destination], 3), path};
     std::pair<double, std::vector<int>> ret = {toPre(distance[destination], 3), path_ordered};
     
     return ret;
